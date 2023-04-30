@@ -1,22 +1,32 @@
 import { participants } from './participantsList';
 import { Participant } from './participants.types';
-import { Card, Col, Row, Space, Typography } from 'antd';
+import { Card, Col, Row, Typography } from 'antd';
 
 const { Title, Link } = Typography;
 
 const Participants = () => {
   return (
-    <Space direction="vertical" style={{ display: 'flex', alignItems: 'center' }}>
-      <Title level={3}>Developers</Title>
-      <Row gutter={16}>
+    <section
+      style={{
+        backgroundColor: '#f0f5ff',
+        paddingBottom: '50px',
+        margin: '30px auto',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <Title level={2}>Developers</Title>
+      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} justify="center">
         {participants.map((person: Participant) => {
           return (
-            <Col span={8} key={person.id}>
+            <Col span={6} key={person.id}>
               <Card
-                key={person.id}
                 hoverable
-                style={{ width: 240, height: 450, textAlign: 'center' }}
-                cover={<img alt={person.name} src={person.img} />}
+                style={{ textAlign: 'center', width: '100%', aspectRatio: 'auto' }}
+                cover={
+                  <img alt={person.name} src={person.img} style={{ filter: 'grayscale(100%)' }} />
+                }
               >
                 <Title level={4} style={{ marginTop: '-10px' }}>
                   {person.name}
@@ -38,7 +48,7 @@ const Participants = () => {
           );
         })}
       </Row>
-    </Space>
+    </section>
   );
 };
 
