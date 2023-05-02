@@ -40,4 +40,4 @@ The client part is written using:
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/aleksmazur/SchoolBook/issues). 
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/wowblvck/graphiql-app/issues). 
