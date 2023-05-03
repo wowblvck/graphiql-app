@@ -1,5 +1,7 @@
-import { Menu } from 'antd';
+import { Menu, Layout } from 'antd';
 import { BookOutlined, HistoryOutlined, ReloadOutlined, SettingOutlined } from '@ant-design/icons';
+
+const { Sider } = Layout;
 
 const sideMenuItems = [
   {
@@ -22,18 +24,20 @@ const sideMenuItems = [
 
 const SideMenu = () => {
   return (
-    <Menu
-      theme="light"
-      mode="inline"
-      items={sideMenuItems.map((item) => {
-        return {
-          key: item.name,
-          icon: item.icon,
-        };
-      })}
-      onClick={({ key }) => console.log(key)}
-      inlineCollapsed={true}
-    ></Menu>
+    <Sider collapsed={true}>
+      <Menu
+        theme="light"
+        mode="inline"
+        style={{ height: '100%' }}
+        items={sideMenuItems.map((item) => {
+          return {
+            key: item.name,
+            icon: item.icon,
+          };
+        })}
+        onClick={({ key }) => console.log(key)}
+      ></Menu>
+    </Sider>
   );
 };
 
