@@ -17,6 +17,7 @@
     "@reduxjs/toolkit": "^1.9.5",
     "@types/react-redux": "^7.1.25",
     "antd": "^5.4.6",
+    "graphql": "^16.6.0",
     "i18next": "^22.4.15",
     "i18next-http-backend": "^2.2.0",
     "normalize.css": "^8.0.1",
