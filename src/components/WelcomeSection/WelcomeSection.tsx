@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Col, Image, Row, Button, Typography, Grid } from 'antd';
+import { Col, Image, Row, Button, Typography, Grid, Space } from 'antd';
 
 const { Title, Paragraph, Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -20,73 +20,52 @@ const advantages = [
 ];
 
 const WelcomeSection = () => {
-  const { lg, xxl } = useBreakpoint();
+  const { xs, xl } = useBreakpoint();
 
   const navigate = useNavigate();
   return (
-    <section
-      style={{
-        margin: '50px auto',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-      }}
+    <Space
+      direction="vertical"
+      size="middle"
+      style={{ display: 'flex', margin: '50px auto', alignItems: 'center' }}
     >
+      <Title
+        style={{
+          fontSize: xl ? '60px' : '36px',
+          textAlign: 'center',
+          margin: '0 auto',
+        }}
+      >
+        Welcome to GraphiQL!
+      </Title>
+      <Title
+        level={2}
+        style={{
+          fontSize: xl ? '40px' : '24px',
+          margin: '0 auto',
+          textAlign: 'center',
+          width: xs ? '90%' : '100%',
+        }}
+      >
+        GraphiQL is a playground/IDE for graphQL requests
+      </Title>
       <Row justify="center" gutter={[16, 24]}>
-        <Col
-          xs={{ span: 20, order: 1 }}
-          sm={{ span: 16, order: 1 }}
-          md={{ span: 12, order: 1 }}
-          lg={{ span: 6, order: 0 }}
-          xl={{ span: 5, order: 0 }}
-          className="col-1"
-          style={{ display: 'flex', justifyContent: 'end' }}
-        >
-          <Image
-            height="100%"
-            src="../src/assets/img/rickmorty.gif"
-            preview={false}
-            style={{ boxShadow: '4px 4px 21px 1px rgba(34, 60, 80, 0.1)', aspectRatio: 'auto' }}
-          />
-        </Col>
-        <Col
-          xs={20}
-          sm={20}
-          md={20}
-          lg={14}
-          xl={14}
-          style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-        >
-          <Typography>
-            <Title
-              style={{
-                fontSize: xxl ? '60px' : '36px',
-                marginTop: '-10px',
-                textAlign: lg ? 'start' : 'center',
-              }}
-            >
-              Welcome to GraphiQL!
-            </Title>
-            <Title
-              level={2}
-              style={{
-                fontSize: xxl ? '40px' : '24px',
-                marginTop: '-10px',
-                textAlign: lg ? 'start' : 'center',
-              }}
-            >
-              GraphiQL is a playground/IDE for graphQL requests
-            </Title>
+        <Col xs={22} sm={20} md={16} lg={16} xl={14}>
+          <Typography
+            style={{
+              margin: '0 auto',
+            }}
+          >
             <Paragraph
               style={{
-                fontSize: xxl ? '20px' : '14px',
+                fontSize: xl ? '20px' : '14px',
               }}
             >
               This playground created as a result of the{' '}
               <Text
                 strong
                 style={{
-                  fontSize: xxl ? '20px' : '14px',
+                  fontSize: xl ? '20px' : '14px',
                 }}
               >
                 final project on the React 2023 Q1 course by RS School.
@@ -95,10 +74,15 @@ const WelcomeSection = () => {
               Morty API, gives you the power to ask for exactly what you need and nothing more,
               enables powerful developer tools.
             </Paragraph>
-
+          </Typography>
+        </Col>
+      </Row>
+      <Row justify="center">
+        <Col span={24}>
+          <Typography>
             <Paragraph
               style={{
-                fontSize: xxl ? '20px' : '14px',
+                fontSize: xl ? '20px' : '14px',
               }}
             >
               <ul>
@@ -108,7 +92,7 @@ const WelcomeSection = () => {
                       <Text
                         italic
                         style={{
-                          fontSize: xxl ? '20px' : '14px',
+                          fontSize: xl ? '20px' : '14px',
                         }}
                       >
                         {adv.text}
@@ -121,6 +105,20 @@ const WelcomeSection = () => {
           </Typography>
         </Col>
       </Row>
+      <Row justify="center">
+        <Col xs={22} sm={20} md={16} lg={16} xl={18}>
+          <Image
+            width="100%"
+            src="../src/assets/img/rickmorty.gif"
+            preview={false}
+            style={{
+              boxShadow: '4px 4px 21px 1px rgba(34, 60, 80, 0.1)',
+              aspectRatio: '1/1',
+              borderRadius: '3%',
+            }}
+          />
+        </Col>
+      </Row>
       <Button
         type="primary"
         size="large"
@@ -131,7 +129,7 @@ const WelcomeSection = () => {
       >
         Get Started
       </Button>
-    </section>
+    </Space>
   );
 };
 

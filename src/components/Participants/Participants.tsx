@@ -6,7 +6,7 @@ const { Title, Link } = Typography;
 const { useBreakpoint } = Grid;
 
 const Participants = () => {
-  const { xs } = useBreakpoint();
+  const { sm, md } = useBreakpoint();
   return (
     <section
       style={{
@@ -19,17 +19,17 @@ const Participants = () => {
       }}
     >
       <Title level={2}>Developers</Title>
-      <Row gutter={[24, 24]} justify="center">
+      <Row gutter={[md ? 24 : 6, 24]} justify="center">
         {participants.map((person: Participant) => {
           return (
-            <Col xs={14} sm={7} md={7} lg={6} xl={5} key={person.id}>
+            <Col xs={14} sm={13} md={6} lg={6} xl={5} key={person.id}>
               <Card
                 hoverable
+                size="small"
                 style={{
                   width: '100%',
                   margin: '0 auto',
                   textAlign: 'center',
-                  aspectRatio: 'auto',
                 }}
                 cover={
                   <img alt={person.name} src={person.img} style={{ filter: 'grayscale(100%)' }} />
@@ -38,9 +38,7 @@ const Participants = () => {
                 <Title
                   level={4}
                   style={{
-                    marginTop: '0px',
-                    // marginBottom: sm ? '-15px' : '0px',
-                    height: xs ? 'fit-content' : '50px',
+                    margin: '0px',
                   }}
                 >
                   {person.name}
@@ -48,8 +46,8 @@ const Participants = () => {
                 <Title
                   level={5}
                   style={{
-                    height: xs ? 'fit-content' : '70px',
-                    marginTop: '-10px',
+                    margin: '0px',
+                    height: sm ? '80px' : 'auto',
                   }}
                 >
                   {person.role.map((role) => {
