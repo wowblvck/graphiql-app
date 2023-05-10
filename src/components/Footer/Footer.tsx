@@ -1,4 +1,6 @@
 import { Col, Row, Image, Typography, Grid } from 'antd';
+import { participants } from '../../utils/participantsList';
+
 const { Link, Paragraph } = Typography;
 const { useBreakpoint } = Grid;
 
@@ -27,7 +29,6 @@ const Footer = () => {
       >
         <Typography>
           <Paragraph>
-            {/* this section will be changed after welcome page merging with develop */}
             <ul
               style={{
                 padding: '0',
@@ -36,21 +37,15 @@ const Footer = () => {
                 gap: '10px',
               }}
             >
-              <li style={{ padding: '0', margin: '0', textAlign: 'center' }}>
-                <Link href="https://github.com/wowblvck" target="_blank">
-                  Indar Basto
-                </Link>
-              </li>
-              <li style={{ padding: '0', margin: '0', textAlign: 'center' }}>
-                <Link href="https://github.com/ViktorMinkov" target="_blank">
-                  Viktor Minkov
-                </Link>
-              </li>
-              <li style={{ padding: '0', margin: '0', textAlign: 'center' }}>
-                <Link href="https://github.com/RallyZK" target="_blank">
-                  Railia Balakaeva
-                </Link>
-              </li>
+              {participants.map((person) => {
+                return (
+                  <li key={person.id} style={{ padding: '0', margin: '0', textAlign: 'center' }}>
+                    <Link href={person.githubLink} target="_blank">
+                      {person.name}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </Paragraph>
         </Typography>
