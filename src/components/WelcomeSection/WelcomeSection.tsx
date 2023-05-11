@@ -50,27 +50,22 @@ const WelcomeSection = () => {
       >
         GraphiQL is a playground/IDE for graphQL requests
       </Title>
-      <Row justify="center" gutter={[16, 24]}>
+      <Row justify="center">
         <Col xs={22} sm={20} md={16} lg={16} xl={14}>
-          <Typography
-            style={{
-              margin: '0 auto',
-            }}
-          >
+          <Typography style={{ textAlign: 'center' }}>
             <Paragraph
               style={{
                 fontSize: xxl ? '20px' : '14px',
-                textAlign: 'center',
               }}
             >
-              This playground created as a result of the{' '}
+              This playground created as a result of the&nbsp;
               <Text
                 strong
                 style={{
                   fontSize: xxl ? '20px' : '14px',
                 }}
               >
-                final project on the React 2023 Q1 course by RS School.
+                final project on the React 2023 Q1 course by RS School.&nbsp;
               </Text>
               GraphiQL provides a complete and understandable description of the data in Rick and
               Morty API, gives you the power to ask for exactly what you need and nothing more,
