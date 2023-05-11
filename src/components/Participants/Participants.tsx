@@ -1,6 +1,6 @@
 import { Participant } from './participants.types';
 import { Card, Col, Row, Typography, Grid } from 'antd';
-import { participants } from '../../utils/participantsList';
+import { participants } from '../../utils/participantsList.ts';
 
 const { Title, Link } = Typography;
 const { useBreakpoint } = Grid;
@@ -11,7 +11,6 @@ const Participants = () => {
     <section
       style={{
         display: 'flex',
-        margin: '30px auto',
         alignItems: 'center',
         paddingBottom: '50px',
         flexDirection: 'column',
@@ -19,7 +18,7 @@ const Participants = () => {
       }}
     >
       <Title level={2}>Developers</Title>
-      <Row gutter={[md ? 24 : 6, 24]} justify="center">
+      <Row gutter={[md ? 24 : 6, 24]} justify="center" style={{ marginLeft: 0, marginRight: 0 }}>
         {participants.map((person: Participant) => {
           return (
             <Col xs={14} sm={13} md={6} lg={6} xl={5} key={person.id}>

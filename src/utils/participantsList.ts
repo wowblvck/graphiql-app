@@ -1,4 +1,7 @@
 import { Participant } from '../components/Participants/participants.types';
+import indarPhoto from '../assets/img/Indar_Basto.jpg';
+import viktorPhoto from '../assets/img/Viktor_Minkov.jpeg';
+import railiaPhoto from '../assets/img/Railia_Balakaeva.jpg';
 
 export const participants: Participant[] = [
   {
@@ -6,7 +9,7 @@ export const participants: Participant[] = [
     name: 'Indar Basto',
     role: ['Team lead', 'Frontend developer'],
     githubLink: 'https://github.com/wowblvck',
-    img: '../src/assets/img/Indar_Basto.jpg',
+    img: indarPhoto,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
   },
@@ -15,7 +18,7 @@ export const participants: Participant[] = [
     name: 'Viktor Minkov',
     role: ['Frontend developer'],
     githubLink: 'https://github.com/ViktorMinkov',
-    img: '../src/assets/img/Viktor_Minkov.jpeg',
+    img: viktorPhoto,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
   },
@@ -24,7 +27,7 @@ export const participants: Participant[] = [
     name: 'Railia Balakaeva',
     role: ['Frontend developer'],
     githubLink: 'https://github.com/RallyZK',
-    img: '../src/assets/img/Railia_Balakaeva.jpg',
+    img: railiaPhoto,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
   },
