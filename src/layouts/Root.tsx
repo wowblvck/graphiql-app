@@ -1,8 +1,9 @@
 import { Outlet } from 'react-router-dom';
 import { Layout } from 'antd';
 import Header from '@components/Header/Header';
+import Footer from '@components/Footer/Footer';
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 
 const Root = () => {
   return (
@@ -11,7 +12,7 @@ const Root = () => {
       <Content>
         <Outlet />
       </Content>
-      <Footer>Footer</Footer>
+      <Footer />
     </Layout>
   );
 };
