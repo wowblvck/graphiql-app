@@ -6,7 +6,7 @@ i18n
   .use(Backend)
   .use(initReactI18next)
   .init({
-    lng: 'en',
+    lng: localStorage.getItem('GraphiQLLang') || 'en',
     fallbackLng: 'en',
     detection: {
       order: ['localStorage', 'cookie'],
