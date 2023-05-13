@@ -1,12 +1,14 @@
-import { Col, Row, Image, Typography, Grid, Layout } from 'antd';
-import { participants } from '../../utils/participantsList';
+import { useTranslation } from 'react-i18next';
 import rsschoolLogo from '../../assets/icons/rsschool.png';
+import { participants } from '../../utils/participantsList';
+import { Col, Row, Image, Typography, Grid, Layout } from 'antd';
 
 const { Link, Paragraph } = Typography;
 const { useBreakpoint } = Grid;
 const { Footer } = Layout;
 
 const _Footer = () => {
+  const { t } = useTranslation();
   const { xs, sm } = useBreakpoint();
   return (
     <Footer>
@@ -34,7 +36,7 @@ const _Footer = () => {
                   <Typography>
                     <Paragraph style={{ margin: 0 }}>
                       <Link href={person.githubLink} target="_blank">
-                        {person.name}
+                        {t(`developers.names.${person.name}`)}
                       </Link>
                     </Paragraph>
                   </Typography>

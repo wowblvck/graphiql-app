@@ -4,5 +4,28 @@
       "home": "Home",
       "about": "About Project"
     }
+  },
+  "welcomeSection": {
+    "title": "Welcome to GraphiQL!",
+    "subtitle": "GraphiQL is a playground/IDE for graphQL requests",
+    "description": "This playground created as a result of the final project on the React 2023 Q1 course by RS School. GraphiQL provides a complete and understandable description of the data in Rick and Morty API, gives you the power to ask for exactly what you need and nothing more, enables powerful developer tools.",
+    "advantages": {
+      "ask": "Ask for what you need, get exactly that",
+      "get": "Get many resources in a single request",
+      "describe": "Describe what’s possible with a type system"
+    },
+    "getStarted": "Get Started"
+  },
+  "developers": {
+    "developers": "Developers",
+    "names": {
+      "basto": "Indar Basto",
+      "minkov": "Viktor Minkov",
+      "balakaeva": "Railia Balakaeva"
+    },
+    "roles": {
+      "developer": "Frontend developer",
+      "teamLead": "Team lead"
+    }
   }
 }

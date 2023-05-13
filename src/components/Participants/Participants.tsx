@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Participant } from './participants.types';
 import { Card, Col, Row, Typography, Grid } from 'antd';
 import { participants } from '../../utils/participantsList.ts';
@@ -7,6 +8,7 @@ const { useBreakpoint } = Grid;
 
 const Participants = () => {
   const { sm, md } = useBreakpoint();
+  const { t } = useTranslation();
   return (
     <section
       style={{
@@ -17,7 +19,7 @@ const Participants = () => {
         backgroundColor: '#f0f5ff',
       }}
     >
-      <Title level={2}>Developers</Title>
+      <Title level={2}>{t('developers.developers')}</Title>
       <Row gutter={[md ? 24 : 6, 24]} justify="center" style={{ marginLeft: 0, marginRight: 0 }}>
         {participants.map((person: Participant) => {
           return (
@@ -40,7 +42,7 @@ const Participants = () => {
                     margin: '0px',
                   }}
                 >
-                  {person.name}
+                  {t(`developers.names.${person.name}`)}
                 </Title>
                 <Title
                   level={5}
@@ -52,7 +54,7 @@ const Participants = () => {
                   {person.role.map((role) => {
                     return (
                       <p key={role} style={{ margin: '3px' }}>
-                        {role}
+                        {t(`developers.roles.${role}`)}
                       </p>
                     );
                   })}
