@@ -13,7 +13,7 @@ const TranslationButtons = () => {
   };
 
   return (
-    <Radio.Group value={language} onChange={(e) => changeLang(e)}>
+    <Radio.Group size={'small'} value={language} onChange={(e) => changeLang(e)}>
       <Radio.Button value="en">ENG</Radio.Button>
       <Radio.Button value="ru">РУС</Radio.Button>
     </Radio.Group>
