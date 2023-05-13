@@ -1,11 +1,12 @@
 import Docs from '@/components/Docs/Docs';
 import SideMenu from '@/components/SideMenu/SideMenu';
-import { Layout, Row, Col } from 'antd';
+import { Layout, Row, Col, Grid } from 'antd';
 import { BookOutlined, HistoryOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { SideMenuItemsType } from '@/types/side-menu.types';
 
 const { Content } = Layout;
+const { useBreakpoint } = Grid;
 
 const sideMenuItems: SideMenuItemsType[] = [
   {
@@ -25,6 +26,7 @@ const PlaygroundPage = () => {
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   // const [isOpen, setIsOpen] = useState(false);
   const [element, setElement] = useState('');
+  const { lg } = useBreakpoint();
 
   const getElementByClick = (key: string) => {
     setElement(key);
@@ -45,29 +47,27 @@ const PlaygroundPage = () => {
       <SideMenu items={sideMenuItems} handleClick={getElementByClick} />
       <Layout>
         <Content>
-          <Row style={{ height: '100%' }}>
+          <Row style={{ height: lg ? 'calc(100vh - 128px)' : '100%' }}>
             <Col
               span={isDocsOpen || isHistoryOpen ? 24 : 0}
-              style={{ minWidth: '200px' }}
-              lg={{ span: isDocsOpen || isHistoryOpen ? 6 : 0 }}
+              lg={isDocsOpen || isHistoryOpen ? 6 : 0}
+              style={{ height: lg ? '100%' : '250px', overflow: 'auto', paddingLeft: '5px' }}
             >
               {sideMenuItems.find((item) => item.name === element)?.component}
             </Col>
             <Col
               span={24}
-              lg={isDocsOpen || isHistoryOpen ? 18 : 24}
-              style={{
-                padding: '10px',
-              }}
+              lg={isDocsOpen || isHistoryOpen ? 9 : 12}
+              style={{ backgroundColor: 'tomato' }}
             >
-              <Row style={{ height: '100%' }}>
-                <Col span={24} lg={12} style={{ backgroundColor: 'tomato', height: '100%' }}>
-                  EDITOR
-                </Col>
-                <Col span={24} lg={12} style={{ backgroundColor: 'blue', height: '100%' }}>
-                  Response
-                </Col>
-              </Row>
+              EDITOR
+            </Col>
+            <Col
+              span={24}
+              lg={isDocsOpen || isHistoryOpen ? 9 : 12}
+              style={{ backgroundColor: 'blue' }}
+            >
+              Response
             </Col>
           </Row>
         </Content>

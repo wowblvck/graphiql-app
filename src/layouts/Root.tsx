@@ -6,7 +6,7 @@ const { Content, Footer } = Layout;
 
 const Root = () => {
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout>
       <Header />
       <Content style={{ display: 'flex' }}>
         <Outlet />
