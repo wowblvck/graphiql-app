@@ -4,5 +4,26 @@
       "home": "Home",
       "about": "About Project"
     }
+  },
+  "auth": {
+    "button": "Sing In / Sing Up",
+    "login": {
+      "placeholder_email": "Email",
+      "placeholder_password": "Password",
+      "required_email": "Please input your email!",
+      "required_password": "Please input your password!",
+      "login_btn": "Log In",
+      "login_state": "Or <State>register now</State>"
+    },
+    "register": {
+      "placeholder_email": "Email",
+      "placeholder_password": "Password",
+      "placeholder_check_password": "Repeat password",
+      "required_email": "Please input your email!",
+      "required_password": "Please input your password!",
+      "required_check_password": "Please re-check your password!",
+      "register_btn": "Register",
+      "register_state": "Or <State>login now</State>"
+    }
   }
 }

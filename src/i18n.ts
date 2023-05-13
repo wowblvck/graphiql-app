@@ -6,7 +6,7 @@ i18n
   .use(Backend)
   .use(initReactI18next)
   .init({
-    lng: 'en',
+    lng: 'ru',
     fallbackLng: 'en',
     detection: {
       order: ['localStorage', 'cookie'],
