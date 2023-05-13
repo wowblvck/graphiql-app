@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import rickAndMortyGif from '../../assets/img/rickmorty.gif';
 import { Col, Image, Row, Button, Typography, Grid, Space } from 'antd';
-import TranslationButtons from '../TranslationButtons/TranslationButtons';
 
 const { Title, Paragraph, Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -19,7 +18,6 @@ const WelcomeSection = () => {
       size="middle"
       style={{ display: 'flex', margin: '35px auto', alignItems: 'center' }}
     >
-      <TranslationButtons />
       <Title
         style={{
           fontSize: xxl ? '60px' : '36px',

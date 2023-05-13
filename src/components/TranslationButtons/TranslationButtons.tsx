@@ -10,10 +10,10 @@ const TranslationButtons = () => {
     i18n.changeLanguage(language);
   };
 
-  const changeLang = (e: string) => {
-    changeLanguage(e);
-    setLanguage(e);
-    localStorage.setItem('GraphiQLLang', language);
+  const changeLang = (value: string) => {
+    changeLanguage(value);
+    setLanguage(value);
+    localStorage.setItem('GraphiQLLang', value);
   };
 
   return (
