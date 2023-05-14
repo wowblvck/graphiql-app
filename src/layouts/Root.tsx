@@ -3,15 +3,11 @@ import { Layout } from 'antd';
 import Header from '@components/Header/Header';
 import Footer from '@components/Footer/Footer';
 
-const { Content } = Layout;
-
 const Root = () => {
   return (
-    <Layout>
+    <Layout style={{ minHeight: '100vh' }}>
       <Header />
-      <Content style={{ display: 'flex' }}>
-        <Outlet />
-      </Content>
+      <Outlet />
       <Footer />
     </Layout>
   );
