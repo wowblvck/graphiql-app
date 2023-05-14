@@ -4,6 +4,7 @@ import WelcomePage from '@/pages/WelcomePage/WelcomePage';
 import AboutPage from '@/pages/AboutPage/AboutPage';
 import Router from './router.types';
 import { HomeOutlined } from '@ant-design/icons';
+import AuthPage from '@/pages/AuthPage/AuthPage';
 import PlaygroundPage from '@/pages/PlaygroundPage/PlaygroundPage';
 
 const router = createBrowserRouter([
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: 'about',
         element: <AboutPage />,
+      },
+      {
+        path: 'auth',
+        element: <AuthPage />,
       },
       {
         path: 'playground',

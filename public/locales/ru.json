@@ -31,5 +31,27 @@
       "developer": "Frontend разработчик",
       "teamLead": "Тимлид"
     }
+  },
+  "auth": {
+    "button": "Авторизация / Регистрация",
+    "login": {
+      "placeholder_email": "Электронная почта",
+      "placeholder_password": "Пароль",
+      "required_email": "Пожалуйста, введите адрес почты!",
+      "required_password": "Пожалуйста, введите пароль!",
+      "login_btn": "Войти",
+      "login_state": "Или <State>зарегистрируйтесь</State>"
+    },
+    "register": {
+      "placeholder_email": "Электронная почта",
+      "placeholder_password": "Пароль",
+      "placeholder_check_password": "Повторите пароль",
+      "required_email": "Пожалуйста, введите адрес почты!",
+      "required_password": "Пожалуйста, введите пароль!",
+      "required_check_password": "Пожалуйста, повторите пароль!",
+      "register_btn": "Зарегистрироваться",
+      "register_state": "Или <State>авторизуйтесь</State>"
+    },
+    "state": "Или <State>зарегистрироваться</State>"
   }
 }
