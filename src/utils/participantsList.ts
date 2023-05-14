@@ -6,8 +6,8 @@ import railiaPhoto from '../assets/img/Railia_Balakaeva.jpg';
 export const participants: Participant[] = [
   {
     id: 1,
-    name: 'Indar Basto',
-    role: ['Team lead', 'Frontend developer'],
+    name: 'basto',
+    role: ['teamLead', 'developer'],
     githubLink: 'https://github.com/wowblvck',
     img: indarPhoto,
     description:
@@ -15,8 +15,8 @@ export const participants: Participant[] = [
   },
   {
     id: 2,
-    name: 'Viktor Minkov',
-    role: ['Frontend developer'],
+    name: 'minkov',
+    role: ['developer'],
     githubLink: 'https://github.com/ViktorMinkov',
     img: viktorPhoto,
     description:
@@ -24,8 +24,8 @@ export const participants: Participant[] = [
   },
   {
     id: 3,
-    name: 'Railia Balakaeva',
-    role: ['Frontend developer'],
+    name: 'balakaeva',
+    role: ['developer'],
     githubLink: 'https://github.com/RallyZK',
     img: railiaPhoto,
     description:
