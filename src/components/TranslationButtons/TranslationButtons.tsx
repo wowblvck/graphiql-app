@@ -4,12 +4,11 @@ import { useTranslation } from 'react-i18next';
 
 const TranslationButtons = () => {
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useState(localStorage.getItem('GraphiQLLang') || 'en');
+  const [language, setLanguage] = useState(localStorage.getItem('i18nextLng'));
 
   const changeLang = (e: RadioChangeEvent) => {
     i18n.changeLanguage(e.target.value);
     setLanguage(e.target.value);
-    localStorage.setItem('GraphiQLLang', e.target.value);
   };
 
   return (

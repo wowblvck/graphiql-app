@@ -6,7 +6,7 @@
       "playground": "GraphiQL IDE"
     },
     "docs": {
-      "description" : "Схема GraphQL предоставляет корневой тип для каждого вида операции"
+      "description": "Схема GraphQL предоставляет корневой тип для каждого вида операции"
     }
   },
   "welcomeSection": {

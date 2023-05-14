@@ -6,7 +6,7 @@
       "playground": "GraphiQL IDE"
     },
     "docs": {
-      "description" : "A GraphQL schema provides a root type for each kind of operation"
+      "description": "A GraphQL schema provides a root type for each kind of operation"
     }
   },
   "welcomeSection": {
