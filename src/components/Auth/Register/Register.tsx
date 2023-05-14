@@ -1,6 +1,9 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { Button, Form, Input } from 'antd';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { useAppDispatch } from '@/store/store';
+import { setUser } from '@/store/reducers/user/user.reducer';
 
 type Auth = {
   email: string;
@@ -9,9 +12,27 @@ type Auth = {
 
 const Register = () => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
 
-  const registerFinish = (values: Auth) => {
-    console.log('Received values of form: ', values);
+  const registerFinish = ({ email, password }: Auth) => {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        user.getIdToken().then((token) => {
+          dispatch(
+            setUser({
+              id: user.uid,
+              email: user.email,
+              token,
+            })
+          );
+        });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
   };
 
   return (
@@ -43,7 +64,7 @@ const Register = () => {
         name="check_password"
         rules={[{ required: true, message: t('auth.register.required_check_password') as string }]}
       >
-        <Input
+        <Input.Password
           prefix={<LockOutlined />}
           placeholder={t('auth.register.placeholder_check_password') as string}
         />

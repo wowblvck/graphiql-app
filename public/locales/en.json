@@ -33,7 +33,8 @@
     }
   },
   "auth": {
-    "button": "Sing In / Sing Up",
+    "login_btn": "Sing In",
+    "logout_btn": "Logout",
     "login": {
       "placeholder_email": "Email",
       "placeholder_password": "Password",

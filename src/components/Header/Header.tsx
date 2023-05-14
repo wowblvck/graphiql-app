@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { Affix, Menu, MenuTheme, Button, Grid } from 'antd';
-import { LoginOutlined } from '@ant-design/icons';
+import { LoginOutlined, LogoutOutlined } from '@ant-design/icons';
 import { routerLinks } from '@/routes/router';
 import { useTranslation } from 'react-i18next';
 import { Header } from 'antd/es/layout/layout';
 import { darkBlue, white } from '@/constants/colors';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '@/hooks/useAuth';
+import { useAppDispatch } from '@/store/store';
+import { removeUser } from '@/store/reducers/user/user.reducer';
 
 const { useBreakpoint } = Grid;
 
@@ -16,6 +19,8 @@ const _Header = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { md } = useBreakpoint();
+  const { isAuth } = useAuth();
+  const dispatch = useAppDispatch();
 
   return (
     <Affix
@@ -53,13 +58,25 @@ const _Header = () => {
           })}
           onClick={({ key }) => navigate(key)}
         ></Menu>
-        <Link to="/auth" style={{ display: 'flex' }}>
-          {md ? (
-            <Button type="primary">{t('auth.button')}</Button>
-          ) : (
-            <LoginOutlined style={{ fontSize: '24px' }} />
-          )}
-        </Link>
+        {!isAuth ? (
+          <Button
+            size="middle"
+            icon={<LoginOutlined />}
+            type="primary"
+            onClick={() => navigate('/auth')}
+          >
+            {md ? t('auth.login_btn') : ''}
+          </Button>
+        ) : (
+          <Button
+            size="middle"
+            icon={<LogoutOutlined />}
+            type="primary"
+            onClick={() => dispatch(removeUser())}
+          >
+            {md ? t('auth.logout_btn') : ''}
+          </Button>
+        )}
       </Header>
     </Affix>
   );
