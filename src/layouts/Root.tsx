@@ -9,7 +9,7 @@ const Root = () => {
   return (
     <Layout>
       <Header />
-      <Content>
+      <Content style={{ display: 'flex' }}>
         <Outlet />
       </Content>
       <Footer />

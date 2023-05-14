@@ -5,6 +5,7 @@ import AboutPage from '@/pages/AboutPage/AboutPage';
 import Router from './router.types';
 import { HomeOutlined } from '@ant-design/icons';
 import AuthPage from '@/pages/AuthPage/AuthPage';
+import PlaygroundPage from '@/pages/PlaygroundPage/PlaygroundPage';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         path: 'auth',
         element: <AuthPage />,
       },
+      {
+        path: 'playground',
+        element: <PlaygroundPage />,
+      },
     ],
   },
 ]);
@@ -36,6 +41,10 @@ export const routerLinks: Router[] = [
   {
     name: 'about',
     path: '/about',
+  },
+  {
+    name: 'playground',
+    path: '/playground',
   },
 ];
 

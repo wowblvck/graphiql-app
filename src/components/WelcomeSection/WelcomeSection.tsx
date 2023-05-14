@@ -1,29 +1,17 @@
 import { useNavigate } from 'react-router-dom';
-import { Col, Image, Row, Button, Typography, Grid, Space } from 'antd';
+import { useTranslation } from 'react-i18next';
 import rickAndMortyGif from '../../assets/img/rickmorty.gif';
+import { Col, Image, Row, Button, Typography, Grid, Space } from 'antd';
 
 const { Title, Paragraph, Text } = Typography;
 const { useBreakpoint } = Grid;
-
-const advantages = [
-  {
-    id: 0,
-    text: 'Ask for what you need, get exactly that',
-  },
-  {
-    id: 1,
-    text: 'Get many resources in a single request',
-  },
-  {
-    id: 2,
-    text: 'Describe what’s possible with a type system',
-  },
-];
+const advantages = ['ask', 'get', 'describe'];
 
 const WelcomeSection = () => {
   const { xs, xxl } = useBreakpoint();
-
+  const { t } = useTranslation();
   const navigate = useNavigate();
+
   return (
     <Space
       direction="vertical"
@@ -37,7 +25,7 @@ const WelcomeSection = () => {
           margin: '0 auto',
         }}
       >
-        Welcome to GraphiQL!
+        {t('welcomeSection.title')}
       </Title>
       <Title
         level={2}
@@ -48,7 +36,7 @@ const WelcomeSection = () => {
           width: xs ? '90%' : '100%',
         }}
       >
-        GraphiQL is a playground/IDE for graphQL requests
+        {t('welcomeSection.subtitle')}
       </Title>
       <Row justify="center">
         <Col xs={22} sm={20} md={16} lg={16} xl={14}>
@@ -58,18 +46,7 @@ const WelcomeSection = () => {
                 fontSize: xxl ? '20px' : '14px',
               }}
             >
-              This playground created as a result of the&nbsp;
-              <Text
-                strong
-                style={{
-                  fontSize: xxl ? '20px' : '14px',
-                }}
-              >
-                final project on the React 2023 Q1 course by RS School.&nbsp;
-              </Text>
-              GraphiQL provides a complete and understandable description of the data in Rick and
-              Morty API, gives you the power to ask for exactly what you need and nothing more,
-              enables powerful developer tools.
+              {t('welcomeSection.description')}
             </Paragraph>
           </Typography>
         </Col>
@@ -85,14 +62,14 @@ const WelcomeSection = () => {
               <ul>
                 {advantages.map((adv) => {
                   return (
-                    <li key={adv.id}>
+                    <li key={adv}>
                       <Text
                         italic
                         style={{
                           fontSize: xxl ? '20px' : '14px',
                         }}
                       >
-                        {adv.text}
+                        {t(`welcomeSection.advantages.${adv}`)}
                       </Text>
                     </li>
                   );
@@ -124,7 +101,7 @@ const WelcomeSection = () => {
         // onClick function will be changed after user registration added
         onClick={() => navigate('/about')}
       >
-        Get Started
+        {t('welcomeSection.getStarted')}
       </Button>
     </Space>
   );
