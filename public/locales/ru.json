@@ -6,7 +6,7 @@
       "playground": "GraphiQL IDE"
     },
     "docs": {
-      "description" : "Схема GraphQL предоставляет корневой тип для каждого вида операции"
+      "description": "Схема GraphQL предоставляет корневой тип для каждого вида операции"
     }
   },
   "welcomeSection": {
@@ -33,7 +33,8 @@
     }
   },
   "auth": {
-    "button": "Авторизация / Регистрация",
+    "login_btn": "Войти",
+    "logout_btn": "Выйти",
     "login": {
       "placeholder_email": "Электронная почта",
       "placeholder_password": "Пароль",
@@ -52,6 +53,17 @@
       "register_btn": "Зарегистрироваться",
       "register_state": "Или <State>авторизуйтесь</State>"
     },
-    "state": "Или <State>зарегистрироваться</State>"
+    "errors": {
+      "type": {
+        "login": "Авторизация",
+        "register": "Регистрация"
+      },
+      "not_authorized": "Простите, у вас нет доступа к этой странице.",
+      "auth/too-many-requests": "Превышено количество попыток входа. Попробуйте позже",
+      "auth/network-request-failed": "Проблемы с сетью. Проверьте ваше интернет-соединение",
+      "auth/wrong-password": "Неверный пароль",
+      "auth/invalid-email": "Неверный адрес электронной почты",
+      "auth/user-not-found": "Пользователь не найден"
+    }
   }
 }

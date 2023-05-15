@@ -2,45 +2,43 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import rickAndMortyGif from '../../assets/img/rickmorty.gif';
 import { Col, Image, Row, Button, Typography, Grid, Space } from 'antd';
+import { useAuth } from '@/hooks/useAuth';
+import { Routes } from '@/routes/router';
 
 const { Title, Paragraph, Text } = Typography;
 const { useBreakpoint } = Grid;
 const advantages = ['ask', 'get', 'describe'];
 
 const WelcomeSection = () => {
-  const { xs, xxl } = useBreakpoint();
+  const { xxl } = useBreakpoint();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { isAuth } = useAuth();
 
   return (
-    <Space
-      direction="vertical"
-      size="middle"
-      style={{ display: 'flex', margin: '35px auto', alignItems: 'center' }}
-    >
-      <Title
-        style={{
-          fontSize: xxl ? '60px' : '36px',
-          textAlign: 'center',
-          margin: '0 auto',
-        }}
-      >
-        {t('welcomeSection.title')}
-      </Title>
-      <Title
-        level={2}
-        style={{
-          fontSize: xxl ? '40px' : '24px',
-          margin: '0 auto',
-          textAlign: 'center',
-          width: xs ? '90%' : '100%',
-        }}
-      >
-        {t('welcomeSection.subtitle')}
-      </Title>
-      <Row justify="center">
-        <Col xs={22} sm={20} md={16} lg={16} xl={14}>
-          <Typography style={{ textAlign: 'center' }}>
+    <Row justify="center" style={{ padding: '35px 25px' }}>
+      <Col>
+        <Space direction="vertical" size="middle" align="center">
+          <Title
+            style={{
+              fontSize: xxl ? '60px' : '36px',
+              textAlign: 'center',
+              margin: '0',
+            }}
+          >
+            {t('welcomeSection.title')}
+          </Title>
+          <Title
+            level={2}
+            style={{
+              fontSize: xxl ? '40px' : '24px',
+              textAlign: 'center',
+              margin: '0',
+            }}
+          >
+            {t('welcomeSection.subtitle')}
+          </Title>
+          <Typography style={{ textAlign: 'center', maxWidth: '900px' }}>
             <Paragraph
               style={{
                 fontSize: xxl ? '20px' : '14px',
@@ -49,10 +47,7 @@ const WelcomeSection = () => {
               {t('welcomeSection.description')}
             </Paragraph>
           </Typography>
-        </Col>
-      </Row>
-      <Row justify="center">
-        <Col span={24}>
+
           <Typography>
             <Paragraph
               style={{
@@ -77,10 +72,6 @@ const WelcomeSection = () => {
               </ul>
             </Paragraph>
           </Typography>
-        </Col>
-      </Row>
-      <Row justify="center">
-        <Col xs={22} sm={20} md={16} lg={16} xl={18}>
           <Image
             width="100%"
             src={rickAndMortyGif}
@@ -89,21 +80,22 @@ const WelcomeSection = () => {
               boxShadow: '4px 4px 21px 1px rgba(34, 60, 80, 0.1)',
               aspectRatio: '1/1',
               borderRadius: '3%',
+              maxWidth: '400px',
+              objectFit: 'cover',
             }}
           />
-        </Col>
-      </Row>
-      <Button
-        type="primary"
-        size="large"
-        shape="round"
-        style={{ margin: '50px auto 0', display: 'block' }}
-        // onClick function will be changed after user registration added
-        onClick={() => navigate('/about')}
-      >
-        {t('welcomeSection.getStarted')}
-      </Button>
-    </Space>
+          <Button
+            type="primary"
+            size="large"
+            shape="round"
+            style={{ marginTop: '50px' }}
+            onClick={() => (!isAuth ? navigate(Routes.Auth) : navigate(Routes.Playground))}
+          >
+            {t('welcomeSection.getStarted')}
+          </Button>
+        </Space>
+      </Col>
+    </Row>
   );
 };
 
