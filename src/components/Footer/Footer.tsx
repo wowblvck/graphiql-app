@@ -47,7 +47,7 @@ const _Footer = () => {
           </Col>
           <Col xs={24} sm={6} style={{ textAlign: 'center' }}>
             <Link href="https://rs.school/" target="_blank">
-              <Image src={rsschoolLogo} preview={false} height="20px"></Image>
+              <Image src={rsschoolLogo} preview={false} height="20px" width="54px"></Image>
             </Link>
           </Col>
         </Row>

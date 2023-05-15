@@ -6,6 +6,7 @@ import { HomeOutlined } from '@ant-design/icons';
 import AuthPage from '@/pages/AuthPage/AuthPage';
 import PlaygroundPage from '@/pages/PlaygroundPage/PlaygroundPage';
 import RequireAuth from '@/components/Auth/RequireAuth/RequireAuth';
+import Page404 from '@/pages/Page404/Page404 ';
 
 export enum Routes {
   Home = '/',
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             <PlaygroundPage />
           </RequireAuth>
         ),
+      },
+      {
+        path: '*',
+        element: <Page404 />,
       },
     ],
   },
