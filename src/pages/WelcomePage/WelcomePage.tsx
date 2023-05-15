@@ -1,16 +1,12 @@
-import { Space, Layout } from 'antd';
+import { Content } from 'antd/es/layout/layout';
 import Participants from '@/components/Participants/Participants';
 import WelcomeSection from '@/components/WelcomeSection/WelcomeSection';
-
-const { Content } = Layout;
 
 const WelcomePage = () => {
   return (
     <Content>
-      <Space direction="vertical" size="small" style={{ display: 'flex' }}>
-        <WelcomeSection />
-        <Participants />
-      </Space>
+      <WelcomeSection />
+      <Participants />
     </Content>
   );
 };

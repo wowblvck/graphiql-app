@@ -33,7 +33,7 @@
     }
   },
   "auth": {
-    "login_btn": "Sing In",
+    "login_btn": "Sign In",
     "logout_btn": "Logout",
     "login": {
       "placeholder_email": "Email",
