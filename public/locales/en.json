@@ -65,5 +65,9 @@
       "auth/invalid-email": "Wrong email address",
       "auth/user-not-found": "User not found"
     }
+  },
+  "error404": {
+    "title": "Sorry, the page you visited does not exist.",
+    "backHome": "Back Home"
   }
 }
