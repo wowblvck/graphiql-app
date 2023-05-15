@@ -1,32 +1,21 @@
-import { Navigate, createBrowserRouter, useLocation } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import Root from '@/layouts/Root';
 import WelcomePage from '@/pages/WelcomePage/WelcomePage';
 import Router from './router.types';
 import { HomeOutlined } from '@ant-design/icons';
 import AuthPage from '@/pages/AuthPage/AuthPage';
 import PlaygroundPage from '@/pages/PlaygroundPage/PlaygroundPage';
-import { useAuth } from '@/hooks/useAuth';
+import RequireAuth from '@/components/Auth/RequireAuth/RequireAuth';
 
 export enum Routes {
-  Welcome = '/',
+  Home = '/',
   Auth = '/auth',
   Playground = '/playground',
 }
 
-const RequireAuth = ({ children }: { children: JSX.Element }) => {
-  const { isAuth } = useAuth();
-  const location = useLocation();
-
-  if (!isAuth) {
-    return <Navigate to={Routes.Auth} state={{ from: location }} replace />;
-  }
-
-  return children;
-};
-
 const router = createBrowserRouter([
   {
-    path: Routes.Welcome,
+    path: Routes.Home,
     element: <Root />,
     children: [
       {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Affix, Menu, MenuTheme, Button, Grid } from 'antd';
 import { LoginOutlined, LogoutOutlined } from '@ant-design/icons';
-import { routerLinks } from '@/routes/router';
+import { routerLinks, Routes } from '@/routes/router';
 import { useTranslation } from 'react-i18next';
 import { Header } from 'antd/es/layout/layout';
 import { darkBlue, white } from '@/constants/colors';
@@ -58,25 +58,15 @@ const _Header = () => {
           })}
           onClick={({ key }) => navigate(key)}
         ></Menu>
-        {!isAuth ? (
-          <Button
-            size="middle"
-            icon={<LoginOutlined />}
-            type="primary"
-            onClick={() => navigate('/auth')}
-          >
-            {md ? t('auth.login_btn') : ''}
-          </Button>
-        ) : (
-          <Button
-            size="middle"
-            icon={<LogoutOutlined />}
-            type="primary"
-            onClick={() => dispatch(removeUser())}
-          >
-            {md ? t('auth.logout_btn') : ''}
-          </Button>
-        )}
+        <Button
+          size="middle"
+          shape="round"
+          icon={!isAuth ? <LoginOutlined /> : <LogoutOutlined />}
+          type="primary"
+          onClick={() => (!isAuth ? navigate(Routes.Auth) : dispatch(removeUser()))}
+        >
+          {md ? (!isAuth ? t('auth.login_btn') : t('auth.logout_btn')) : ''}
+        </Button>
       </Header>
     </Affix>
   );

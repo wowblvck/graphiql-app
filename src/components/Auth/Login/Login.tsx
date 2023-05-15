@@ -1,11 +1,13 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Spin, notification } from 'antd';
 import { useAppDispatch } from '@/store/store';
 import { setUser } from '@/store/reducers/user/user.reducer';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { Routes } from '@/routes/router';
+import { FirebaseError } from 'firebase/app';
+import { useState } from 'react';
 
 type Auth = {
   email: string;
@@ -16,8 +18,10 @@ const Login = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const loginFinish = ({ email, password }: Auth) => {
+    setIsLoading(true);
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
@@ -32,10 +36,16 @@ const Login = () => {
           navigate(Routes.Playground);
         });
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+      .catch((error: FirebaseError) => {
+        notification.error({
+          message: t('auth.errors.type.login'),
+          description: t(`auth.errors.${error.code}`),
+          placement: 'bottomRight',
+          duration: 3,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -61,9 +71,16 @@ const Login = () => {
         />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
-          {t('auth.login.login_btn')}
-        </Button>
+        {isLoading ? (
+          <Spin
+            size="default"
+            style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+          />
+        ) : (
+          <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+            {t('auth.login.login_btn')}
+          </Button>
+        )}
       </Form.Item>
     </Form>
   );

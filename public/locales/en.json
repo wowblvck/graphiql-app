@@ -52,6 +52,18 @@
       "required_check_password": "Please re-check your password!",
       "register_btn": "Register",
       "register_state": "Or <State>login now</State>"
+    },
+    "errors": {
+      "type": {
+        "login": "Authorization",
+        "register": "Registration"
+      },
+      "not_authorized": "Sorry, you are not authorized to access this page.",
+      "auth/too-many-requests": "Too many login attempts. Try later",
+      "auth/network-request-failed": "Network problems. Check your internet connection",
+      "auth/wrong-password": "Wrong password",
+      "auth/invalid-email": "Wrong email address",
+      "auth/user-not-found": "User not found"
     }
   }
 }
