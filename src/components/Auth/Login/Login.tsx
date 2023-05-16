@@ -1,6 +1,6 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, Input, Spin, notification } from 'antd';
+import { Button, Form, Input, Spin, notification, message } from 'antd';
 import { useAppDispatch } from '@/store/store';
 import { setUser } from '@/store/reducers/user/user.reducer';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
@@ -26,6 +26,12 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         user.getIdToken().then((token) => {
+          message.success({
+            content: t('auth.login.success_message'),
+            style: {
+              marginTop: '10vh',
+            },
+          });
           dispatch(
             setUser({
               id: user.uid,
