@@ -1,17 +1,22 @@
-import { Outlet } from 'react-router-dom';
+import { useLocation, useOutlet } from 'react-router-dom';
 import { Layout } from 'antd';
 import Header from '@components/Header/Header';
 import Footer from '@components/Footer/Footer';
-
-const { Content } = Layout;
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
+import './Root.css';
 
 const Root = () => {
+  const location = useLocation();
+  const currentOutlet = useOutlet();
+
   return (
-    <Layout>
+    <Layout style={{ minHeight: '100vh' }}>
       <Header />
-      <Content style={{ display: 'flex' }}>
-        <Outlet />
-      </Content>
+      <SwitchTransition>
+        <CSSTransition key={location.pathname} classNames="fade" timeout={300} unmountOnExit>
+          {currentOutlet}
+        </CSSTransition>
+      </SwitchTransition>
       <Footer />
     </Layout>
   );

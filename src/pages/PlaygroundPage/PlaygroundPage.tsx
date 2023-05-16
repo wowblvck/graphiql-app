@@ -45,33 +45,31 @@ const PlaygroundPage = () => {
   return (
     <Layout>
       <SideMenu items={sideMenuItems} handleClick={getElementByClick} />
-      <Layout>
-        <Content>
-          <Row style={{ height: lg ? 'calc(100vh - 128px)' : '100%' }}>
-            <Col
-              span={isDocsOpen || isHistoryOpen ? 24 : 0}
-              lg={isDocsOpen || isHistoryOpen ? 6 : 0}
-              style={{ height: lg ? '100%' : '250px', overflow: 'auto', paddingLeft: '5px' }}
-            >
-              {sideMenuItems.find((item) => item.name === element)?.component}
-            </Col>
-            <Col
-              span={24}
-              lg={isDocsOpen || isHistoryOpen ? 9 : 12}
-              style={{ backgroundColor: 'tomato' }}
-            >
-              EDITOR
-            </Col>
-            <Col
-              span={24}
-              lg={isDocsOpen || isHistoryOpen ? 9 : 12}
-              style={{ backgroundColor: 'blue' }}
-            >
-              Response
-            </Col>
-          </Row>
-        </Content>
-      </Layout>
+      <Content style={{ display: 'flex' }}>
+        <Row style={{ width: '100%' }}>
+          <Col
+            span={isDocsOpen || isHistoryOpen ? 24 : 0}
+            lg={isDocsOpen || isHistoryOpen ? 6 : 0}
+            style={{ height: lg ? '100%' : '250px', overflow: 'auto', paddingLeft: '5px' }}
+          >
+            {sideMenuItems.find((item) => item.name === element)?.component}
+          </Col>
+          <Col
+            span={24}
+            lg={isDocsOpen || isHistoryOpen ? 9 : 12}
+            style={{ backgroundColor: 'tomato' }}
+          >
+            EDITOR
+          </Col>
+          <Col
+            span={24}
+            lg={isDocsOpen || isHistoryOpen ? 9 : 12}
+            style={{ backgroundColor: 'blue' }}
+          >
+            Response
+          </Col>
+        </Row>
+      </Content>
     </Layout>
   );
 };
