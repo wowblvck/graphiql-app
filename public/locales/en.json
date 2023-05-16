@@ -72,7 +72,8 @@
         "content": "You will not be able to use the GraphiQL IDE if you log out!",
         "cancel": "Cancel",
         "confirm": "Log out"
-      }
+      },
+      "success_message": "You have successfully logged out!"
     }
   },
   "error404": {

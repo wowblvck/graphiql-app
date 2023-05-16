@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Affix, Menu, MenuTheme, Button, Grid, Modal } from 'antd';
+import { Affix, Menu, MenuTheme, Button, Grid, Modal, message } from 'antd';
 import { ExclamationCircleFilled, LoginOutlined, LogoutOutlined } from '@ant-design/icons';
 import { routerLinks, Routes } from '@/routes/router';
 import { useTranslation } from 'react-i18next';
@@ -37,6 +37,12 @@ const _Header = () => {
         const auth = getAuth();
         signOut(auth)
           .then(() => {
+            message.success({
+              content: t('auth.logout.success_message'),
+              style: {
+                marginTop: '10vh',
+              },
+            });
             dispatch(removeUser());
             navigate(Routes.Home);
           })
