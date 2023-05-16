@@ -1,7 +1,7 @@
 import { GraphQLField } from 'graphql';
 import { FC, useState } from 'react';
 import { Typography } from 'antd';
-import QueryMethods from '@/QueryMethods/QueryMethods';
+import QueryMethod from '@/components/QueryMethod/QueryMethod';
 
 const { Paragraph, Text, Link } = Typography;
 
@@ -43,7 +43,7 @@ const Queries: FC<QueriesPropsType> = (props) => {
             ))}
         </>
       ) : (
-        <QueryMethods field={queryField} />
+        <QueryMethod field={queryField} />
       )}
     </div>
   );
