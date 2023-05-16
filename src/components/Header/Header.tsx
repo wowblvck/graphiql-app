@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Affix, Menu, MenuTheme, Button, Grid } from 'antd';
-import { LoginOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Affix, Menu, MenuTheme, Button, Grid, Modal } from 'antd';
+import { ExclamationCircleFilled, LoginOutlined, LogoutOutlined } from '@ant-design/icons';
 import { routerLinks, Routes } from '@/routes/router';
 import { useTranslation } from 'react-i18next';
 import { Header } from 'antd/es/layout/layout';
@@ -9,8 +9,11 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { useAppDispatch } from '@/store/store';
 import { removeUser } from '@/store/reducers/user/user.reducer';
+import { getAuth, signOut } from 'firebase/auth';
 
 const { useBreakpoint } = Grid;
+
+const { confirm } = Modal;
 
 const _Header = () => {
   const [theme, setTheme] = useState<MenuTheme | undefined>('dark');
@@ -21,6 +24,28 @@ const _Header = () => {
   const { md } = useBreakpoint();
   const { isAuth } = useAuth();
   const dispatch = useAppDispatch();
+
+  const showConfirm = () => {
+    confirm({
+      title: t('auth.logout.modal.title'),
+      icon: <ExclamationCircleFilled />,
+      content: t('auth.logout.modal.content'),
+      okText: t('auth.logout.modal.confirm'),
+      cancelText: t('auth.logout.modal.cancel'),
+      centered: true,
+      onOk() {
+        const auth = getAuth();
+        signOut(auth)
+          .then(() => {
+            dispatch(removeUser());
+            navigate(Routes.Home);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      },
+    });
+  };
 
   return (
     <Affix
@@ -62,7 +87,7 @@ const _Header = () => {
           style={{ marginLeft: '30px' }}
           icon={!isAuth ? <LoginOutlined /> : <LogoutOutlined />}
           type="primary"
-          onClick={() => (!isAuth ? navigate(Routes.Auth) : dispatch(removeUser()))}
+          onClick={() => (!isAuth ? navigate(Routes.Auth) : showConfirm())}
         >
           {md ? (!isAuth ? t('auth.login_btn') : t('auth.logout_btn')) : ''}
         </Button>
