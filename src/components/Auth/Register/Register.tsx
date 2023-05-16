@@ -1,24 +1,50 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Spin, message, notification } from 'antd';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { useAppDispatch } from '@/store/store';
 import { setUser } from '@/store/reducers/user/user.reducer';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { registrationSchema } from '@/schema/form-validate.schema';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Routes } from '@/routes/router';
 
-type Auth = {
+type RegisterForm = {
   email: string;
   password: string;
+  check_password: string;
 };
 
 const Register = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const registerFinish = ({ email, password }: Auth) => {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<RegisterForm>({
+    mode: 'onChange',
+    resolver: yupResolver(registrationSchema),
+  });
+
+  const onSubmit: SubmitHandler<RegisterForm> = (data) => {
+    const { email, password } = data;
+    setIsLoading(true);
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         user.getIdToken().then((token) => {
+          message.success({
+            content: t('auth.register.success_message'),
+            style: {
+              marginTop: '10vh',
+            },
+          });
           dispatch(
             setUser({
               id: user.uid,
@@ -26,53 +52,88 @@ const Register = () => {
               token,
             })
           );
+          navigate(Routes.Playground);
         });
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        notification.error({
+          message: t('auth.errors.type.register'),
+          description: t(`auth.errors.${error.code}`),
+          placement: 'bottomRight',
+          duration: 3,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
   return (
     <Form
-      style={{ maxWidth: '300px' }}
       initialValues={{ remember: true }}
-      onFinish={registerFinish}
+      onFinish={handleSubmit(onSubmit)}
+      style={{ maxWidth: '300px', width: '100%' }}
+      size="large"
     >
       <Form.Item
-        name="email"
-        rules={[{ required: true, message: t('auth.register.required_email') as string }]}
+        validateStatus={errors.email ? 'error' : 'success'}
+        help={errors.email && t(`${errors.email.message}`)}
       >
-        <Input
-          prefix={<UserOutlined />}
-          type="email"
-          placeholder={t('auth.register.placeholder_email') as string}
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <Input
+              {...field}
+              prefix={<UserOutlined />}
+              placeholder={t('auth.placeholder_email') as string}
+            />
+          )}
         />
       </Form.Item>
       <Form.Item
-        name="password"
-        rules={[{ required: true, message: t('auth.register.required_password') as string }]}
+        validateStatus={errors.password && 'error'}
+        help={errors.password && t(`${errors.password.message}`)}
       >
-        <Input.Password
-          prefix={<LockOutlined />}
-          placeholder={t('auth.register.placeholder_password') as string}
+        <Controller
+          name="password"
+          control={control}
+          render={({ field }) => (
+            <Input.Password
+              {...field}
+              prefix={<LockOutlined />}
+              placeholder={t('auth.placeholder_password') as string}
+            />
+          )}
         />
       </Form.Item>
       <Form.Item
-        name="check_password"
-        rules={[{ required: true, message: t('auth.register.required_check_password') as string }]}
+        validateStatus={errors.check_password && 'error'}
+        help={errors.check_password && t(`${errors.check_password.message}`)}
       >
-        <Input.Password
-          prefix={<LockOutlined />}
-          placeholder={t('auth.register.placeholder_check_password') as string}
+        <Controller
+          name="check_password"
+          control={control}
+          render={({ field }) => (
+            <Input.Password
+              {...field}
+              prefix={<LockOutlined />}
+              placeholder={t('auth.register.placeholder_check_password') as string}
+            />
+          )}
         />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
-          {t('auth.register.register_btn')}
-        </Button>
+        {isLoading ? (
+          <Spin
+            size="default"
+            style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+          />
+        ) : (
+          <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+            {t('auth.register.register_btn')}
+          </Button>
+        )}
       </Form.Item>
     </Form>
   );

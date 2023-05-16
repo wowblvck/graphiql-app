@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { Row, Col, Layout } from 'antd';
+import { Layout, Typography } from 'antd';
 import { Trans, useTranslation } from 'react-i18next';
 import Login from './Login/Login';
 import Register from './Register/Register';
+import { SwitchTransition, CSSTransition } from 'react-transition-group';
+import './Auth.css';
 
 const { Content } = Layout;
+const { Link, Paragraph } = Typography;
 
 enum FormStates {
   Login = 'login',
@@ -20,24 +23,44 @@ const Auth = () => {
   };
 
   return (
-    <Content style={{ display: 'flex', justifyContent: 'center' }}>
-      <Row justify="center" style={{ padding: '50px 0 50px' }} align="middle">
-        <Col>
+    <SwitchTransition>
+      <CSSTransition
+        key={formState === FormStates.Login ? FormStates.Login : FormStates.Register}
+        classNames="fade"
+        timeout={300}
+        unmountOnExit
+      >
+        <Content
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'center',
+            padding: '0 25px',
+          }}
+        >
           {formState === FormStates.Login ? <Login /> : <Register />}
-          <Trans
-            i18nKey={
-              formState === FormStates.Login
-                ? 'auth.login.login_state'
-                : 'auth.register.register_state'
-            }
-            t={t}
-            components={{
-              State: <a onClick={changeFormState} />,
-            }}
-          />
-        </Col>
-      </Row>
-    </Content>
+          <Paragraph style={{ fontSize: '16px', textTransform: 'lowercase', margin: 0 }}>
+            <Trans
+              i18nKey={
+                formState === FormStates.Login
+                  ? 'auth.login.login_state'
+                  : 'auth.register.register_state'
+              }
+              t={t}
+              components={{
+                State: (
+                  <Link
+                    style={{ fontSize: '16px', textTransform: 'lowercase' }}
+                    onClick={changeFormState}
+                  />
+                ),
+              }}
+            />
+          </Paragraph>
+        </Content>
+      </CSSTransition>
+    </SwitchTransition>
   );
 };
 

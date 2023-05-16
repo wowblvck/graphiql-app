@@ -35,24 +35,30 @@
   "auth": {
     "login_btn": "Войти",
     "logout_btn": "Выйти",
+    "placeholder_email": "Электронная почта",
+    "placeholder_password": "Пароль",
     "login": {
-      "placeholder_email": "Электронная почта",
-      "placeholder_password": "Пароль",
-      "required_email": "Пожалуйста, введите адрес почты!",
-      "required_password": "Пожалуйста, введите пароль!",
       "login_btn": "Войти",
       "login_state": "Или <State>зарегистрируйтесь</State>",
       "success_message": "Вы успешно вошли в систему!"
     },
     "register": {
-      "placeholder_email": "Электронная почта",
-      "placeholder_password": "Пароль",
       "placeholder_check_password": "Повторите пароль",
+      "register_btn": "Зарегистрироваться",
+      "register_state": "Или <State>авторизуйтесь</State>",
+      "success_message": "Вы успешно зарегистрировались!"
+    },
+    "validator": {
       "required_email": "Пожалуйста, введите адрес почты!",
       "required_password": "Пожалуйста, введите пароль!",
-      "required_check_password": "Пожалуйста, повторите пароль!",
-      "register_btn": "Зарегистрироваться",
-      "register_state": "Или <State>авторизуйтесь</State>"
+      "invalid_email": "Неверный формат почты!",
+      "password": {
+        "min_value": "Пароль должен быть не менее 8 символов!",
+        "need_letter": "Пароль должен содержать хотя бы одну букву!",
+        "need_digit": "Пароль должен содержать хотя бы одну цифру!",
+        "need_special": "Пароль должен содержать хотя бы один специальный символ!",
+        "must_match": "Пароли не совпадают"
+      }
     },
     "errors": {
       "type": {
@@ -64,7 +70,9 @@
       "auth/network-request-failed": "Проблемы с сетью. Проверьте ваше интернет-соединение",
       "auth/wrong-password": "Неверный пароль",
       "auth/invalid-email": "Неверный адрес электронной почты",
-      "auth/user-not-found": "Пользователь не найден"
+      "auth/user-not-found": "Пользователь не найден",
+      "auth/email-already-in-use": "Пользователь с данным адресом уже зарегистрирован",
+      "auth/user-disabled": "Аккаунт отключен администратором"
     },
     "logout": {
       "modal": {
