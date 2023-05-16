@@ -41,7 +41,8 @@
       "required_email": "Please input your email!",
       "required_password": "Please input your password!",
       "login_btn": "Log In",
-      "login_state": "Or <State>register now</State>"
+      "login_state": "Or <State>register now</State>",
+      "success_message": "You have successfully logged in!"
     },
     "register": {
       "placeholder_email": "Email",
@@ -64,6 +65,14 @@
       "auth/wrong-password": "Wrong password",
       "auth/invalid-email": "Wrong email address",
       "auth/user-not-found": "User not found"
+    },
+    "logout": {
+      "modal": {
+        "title": "Do you want to log out?",
+        "content": "You will not be able to use the GraphiQL IDE if you log out!",
+        "cancel": "Cancel",
+        "confirm": "Log out"
+      }
     }
   },
   "error404": {

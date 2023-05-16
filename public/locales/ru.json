@@ -41,7 +41,8 @@
       "required_email": "Пожалуйста, введите адрес почты!",
       "required_password": "Пожалуйста, введите пароль!",
       "login_btn": "Войти",
-      "login_state": "Или <State>зарегистрируйтесь</State>"
+      "login_state": "Или <State>зарегистрируйтесь</State>",
+      "success_message": "Вы успешно вошли в систему!"
     },
     "register": {
       "placeholder_email": "Электронная почта",
@@ -64,6 +65,14 @@
       "auth/wrong-password": "Неверный пароль",
       "auth/invalid-email": "Неверный адрес электронной почты",
       "auth/user-not-found": "Пользователь не найден"
+    },
+    "logout": {
+      "modal": {
+        "title": "Вы хотите выйти?",
+        "content": "Вы не сможете пользоваться GraphiQL IDE, если выйдите из системы!",
+        "cancel": "Отмена",
+        "confirm": "Выйти"
+      }
     }
   },
   "error404": {
