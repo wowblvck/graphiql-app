@@ -39,29 +39,37 @@ const Participants = () => {
                       />
                     }
                   >
-                    <Space direction="vertical" align="center">
-                      <Title
-                        level={4}
+                    <Space direction="vertical">
+                      <Space
+                        direction="vertical"
+                        align="center"
                         style={{
-                          margin: '0px',
+                          height: md ? '111px' : 'auto',
                         }}
                       >
-                        {t(`developers.names.${person.name}`)}
-                      </Title>
-                      <Title
-                        level={5}
-                        style={{
-                          margin: '0px',
-                        }}
-                      >
-                        {person.role.map((role) => {
-                          return (
-                            <p key={role} style={{ margin: '3px' }}>
-                              {t(`developers.roles.${role}`)}
-                            </p>
-                          );
-                        })}
-                      </Title>
+                        <Title
+                          level={4}
+                          style={{
+                            margin: '0px',
+                          }}
+                        >
+                          {t(`developers.names.${person.name}`)}
+                        </Title>
+                        <Title
+                          level={5}
+                          style={{
+                            margin: '0px',
+                          }}
+                        >
+                          {person.role.map((role) => {
+                            return (
+                              <p key={role} style={{ margin: '3px' }}>
+                                {t(`developers.roles.${role}`)}
+                              </p>
+                            );
+                          })}
+                        </Title>
+                      </Space>
                       <Link href={person.githubLink} target="_blank">
                         GitHub
                       </Link>
