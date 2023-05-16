@@ -35,24 +35,30 @@
   "auth": {
     "login_btn": "Sign In",
     "logout_btn": "Logout",
+    "placeholder_email": "Email",
+    "placeholder_password": "Password",
     "login": {
-      "placeholder_email": "Email",
-      "placeholder_password": "Password",
-      "required_email": "Please input your email!",
-      "required_password": "Please input your password!",
       "login_btn": "Log In",
       "login_state": "Or <State>register now</State>",
       "success_message": "You have successfully logged in!"
     },
     "register": {
-      "placeholder_email": "Email",
-      "placeholder_password": "Password",
       "placeholder_check_password": "Repeat password",
+      "register_btn": "Register",
+      "register_state": "Or <State>login now</State>",
+      "success_message": "You have successfully registered!"
+    },
+    "validator": {
       "required_email": "Please input your email!",
       "required_password": "Please input your password!",
-      "required_check_password": "Please re-check your password!",
-      "register_btn": "Register",
-      "register_state": "Or <State>login now</State>"
+      "invalid_email": "Invalid email format",
+      "password": {
+        "min_value": "Password must be at least 8 characters",
+        "need_letter": "Password must contain at least one letter",
+        "need_digit": "Password must contain at least one digit",
+        "need_special": "Password must contain at least one special character",
+        "must_match": "Passwords must match"
+      }
     },
     "errors": {
       "type": {
@@ -64,7 +70,9 @@
       "auth/network-request-failed": "Network problems. Check your internet connection",
       "auth/wrong-password": "Wrong password",
       "auth/invalid-email": "Wrong email address",
-      "auth/user-not-found": "User not found"
+      "auth/user-not-found": "User not found",
+      "auth/email-already-in-use": "Email already in use",
+      "auth/user-disabled": "Account is disabled"
     },
     "logout": {
       "modal": {

@@ -8,8 +8,11 @@ import { useNavigate } from 'react-router-dom';
 import { Routes } from '@/routes/router';
 import { FirebaseError } from 'firebase/app';
 import { useState } from 'react';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { authorizationSchema } from '@/schema/form-validate.schema';
 
-type Auth = {
+type AuthForm = {
   email: string;
   password: string;
 };
@@ -20,7 +23,17 @@ const Login = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
-  const loginFinish = ({ email, password }: Auth) => {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<AuthForm>({
+    mode: 'onChange',
+    resolver: yupResolver(authorizationSchema),
+  });
+
+  const onSubmit: SubmitHandler<AuthForm> = (data) => {
+    const { email, password } = data;
     setIsLoading(true);
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
@@ -56,24 +69,42 @@ const Login = () => {
   };
 
   return (
-    <Form style={{ maxWidth: '300px' }} initialValues={{ remember: true }} onFinish={loginFinish}>
+    <Form
+      initialValues={{ remember: true }}
+      onFinish={handleSubmit(onSubmit)}
+      style={{ maxWidth: '300px', width: '100%' }}
+      size="large"
+    >
       <Form.Item
-        name="email"
-        rules={[{ required: true, message: t('auth.login.required_email') as string }]}
+        validateStatus={errors.email ? 'error' : 'success'}
+        help={errors.email && t(`${errors.email.message}`)}
       >
-        <Input
-          prefix={<UserOutlined />}
-          type="email"
-          placeholder={t('auth.login.placeholder_email') as string}
+        <Controller
+          name="email"
+          control={control}
+          render={({ field }) => (
+            <Input
+              {...field}
+              prefix={<UserOutlined />}
+              placeholder={t('auth.placeholder_email') as string}
+            />
+          )}
         />
       </Form.Item>
       <Form.Item
-        name="password"
-        rules={[{ required: true, message: t('auth.login.required_password') as string }]}
+        validateStatus={errors.password && 'error'}
+        help={errors.password && t(`${errors.password.message}`)}
       >
-        <Input.Password
-          prefix={<LockOutlined />}
-          placeholder={t('auth.login.placeholder_password') as string}
+        <Controller
+          name="password"
+          control={control}
+          render={({ field }) => (
+            <Input.Password
+              {...field}
+              prefix={<LockOutlined />}
+              placeholder={t('auth.placeholder_password') as string}
+            />
+          )}
         />
       </Form.Item>
       <Form.Item>
