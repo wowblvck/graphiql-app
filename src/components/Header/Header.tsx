@@ -42,9 +42,8 @@ const _Header = () => {
           alignItems: 'center',
         }}
       >
-        <div className="logo" />
         <Menu
-          style={{ width: '100%' }}
+          style={{ minWidth: 0, flex: 'auto' }}
           theme={theme}
           mode="horizontal"
           defaultSelectedKeys={[location.pathname || 'none']}
@@ -60,7 +59,7 @@ const _Header = () => {
         ></Menu>
         <Button
           size="middle"
-          shape="round"
+          style={{ marginLeft: '30px' }}
           icon={!isAuth ? <LoginOutlined /> : <LogoutOutlined />}
           type="primary"
           onClick={() => (!isAuth ? navigate(Routes.Auth) : dispatch(removeUser()))}
