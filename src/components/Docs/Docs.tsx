@@ -68,7 +68,7 @@ const Docs = () => {
           </Text>
         </>
       ) : (
-        <Queries queries={false || []} />
+        <Queries queries={queries || []} />
       )}
     </Space>
   );
