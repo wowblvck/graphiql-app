@@ -19,7 +19,6 @@ const sideMenuItems: SideMenuItemsType[] = [
 const PlaygroundPage = () => {
   const [isDocsOpen, setIsDocsOpen] = useState(false);
   const [element, setElement] = useState('');
-  // const [docsNav, setDocsNav] = useState<string[]>([]);
   const { lg } = useBreakpoint();
 
   const getElementByClick = (key: string) => {

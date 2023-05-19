@@ -1,8 +1,8 @@
 import { Space, Typography } from 'antd';
-import { GraphQLArgument, GraphQLNonNull, GraphQLScalarType } from 'graphql';
+import { GraphQLArgument } from 'graphql';
 import { FC } from 'react';
 
-const { Title, Paragraph } = Typography;
+const { Title } = Typography;
 
 type ArgsTypeProps = {
   arg: GraphQLArgument | undefined;
@@ -10,13 +10,13 @@ type ArgsTypeProps = {
 
 const ArgsType: FC<ArgsTypeProps> = (props) => {
   const { arg } = props;
-  const argType = arg && (arg.type as GraphQLNonNull<GraphQLScalarType>);
+  const argType = arg && arg.type.toString();
   // GraphQLField<unknown, unknown, unknown>  GraphQLArgument[]
-  console.log(argType?.ofType.name);
+  console.log(argType);
   return (
     <Space direction="vertical">
-      <Title level={3}>{argType?.ofType.name}</Title>
-      <Paragraph>{argType?.ofType.description}</Paragraph>
+      <Title level={3}>{argType}</Title>
+      {/* <Paragraph>{argType?.ofType.description}</Paragraph> */}
     </Space>
   );
 };

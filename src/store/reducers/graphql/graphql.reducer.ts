@@ -11,8 +11,12 @@ const initialState: GraphqlType = {
 const graphqlSlice = createSlice({
   name: 'graphql',
   initialState,
-  reducers: {},
+  reducers: {
+    setSchema: (state, action) => {
+      state.schema = action.payload;
+    },
+  },
 });
 
-// export const {} = graphqlSlice.actions;
+export const { setSchema } = graphqlSlice.actions;
 export default graphqlSlice.reducer;
