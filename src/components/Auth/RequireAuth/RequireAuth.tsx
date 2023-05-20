@@ -26,7 +26,6 @@ const RequireAuth = ({ children }: { children: JSX.Element }) => {
         />
       </Content>
     );
-    // return <Navigate to={Routes.Auth} state={{ from: location }} replace />;
   }
 
   return children;

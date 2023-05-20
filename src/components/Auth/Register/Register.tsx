@@ -8,8 +8,6 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registrationSchema } from '@/schema/form-validate.schema';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Routes } from '@/routes/router';
 
 type RegisterForm = {
   email: string;
@@ -20,7 +18,6 @@ type RegisterForm = {
 const Register = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -52,7 +49,6 @@ const Register = () => {
               token,
             })
           );
-          navigate(Routes.Playground);
         });
       })
       .catch((error) => {
@@ -72,7 +68,7 @@ const Register = () => {
     <Form
       initialValues={{ remember: true }}
       onFinish={handleSubmit(onSubmit)}
-      style={{ maxWidth: '300px', width: '100%' }}
+      style={{ width: '300px' }}
       size="large"
     >
       <Form.Item

@@ -1,4 +1,8 @@
 {
+  "loading": {
+    "message_1": "Удаление всего вашего скрытого порно...",
+    "message_2": "Инициализация инициализатора..."
+  },
   "navigation": {
     "link": {
       "home": "Главная",
@@ -37,6 +41,11 @@
     "logout_btn": "Выйти",
     "placeholder_email": "Электронная почта",
     "placeholder_password": "Пароль",
+    "success": {
+      "title": "Вы успешно авторизовались!",
+      "subTitle": "Вы будете перенаправлены на страницу GraphiQL IDE через {{count}}. Если этого не произошло, пожалуйста, нажмите кнопку.",
+      "button": "Перейти в GraphiQL IDE"
+    },
     "login": {
       "login_btn": "Войти",
       "login_state": "Или <State>зарегистрируйтесь</State>",
