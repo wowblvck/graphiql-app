@@ -1,4 +1,8 @@
 {
+  "loading": {
+    "message_1": "Deleting all your hidden porn...",
+    "message_2": "Initializing the initializer..."
+  },
   "navigation": {
     "link": {
       "home": "Home",
@@ -37,6 +41,11 @@
     "logout_btn": "Logout",
     "placeholder_email": "Email",
     "placeholder_password": "Password",
+    "success": {
+      "title": "You have successfully logged in!",
+      "subTitle": "You will be redirected to the GraphiQL IDE page in {{count}}. If it doesn't, please click the button.",
+      "button": "Go to GraphiQL IDE"
+    },
     "login": {
       "login_btn": "Log In",
       "login_state": "Or <State>register now</State>",
