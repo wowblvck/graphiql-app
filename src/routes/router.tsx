@@ -1,11 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
-// import Root from '@/layouts/Root';
 import WelcomePage from '@/pages/WelcomePage/WelcomePage';
 import Router from './router.types';
 import { HomeOutlined } from '@ant-design/icons';
 import AuthPage from '@/pages/AuthPage/AuthPage';
 import PlaygroundPage from '@/pages/PlaygroundPage/PlaygroundPage';
-// import RequireAuth from '@/components/Auth/RequireAuth/RequireAuth';
 import Page404 from '@/pages/Page404/Page404 ';
 import { Suspense, lazy } from 'react';
 import { Content } from 'antd/es/layout/layout';

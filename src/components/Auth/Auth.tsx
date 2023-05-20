@@ -36,7 +36,11 @@ const Auth = () => {
             timeout={300}
             unmountOnExit
           >
-            <Space direction="vertical" align="center" style={{ gap: '0' }}>
+            <Space
+              direction="vertical"
+              align="center"
+              style={{ gap: '0', columnGap: '0', rowGap: '0' }}
+            >
               {formState === FormStates.Login ? <Login /> : <Register />}
               <Paragraph style={{ fontSize: '16px', textTransform: 'lowercase', margin: 0 }}>
                 <Trans
