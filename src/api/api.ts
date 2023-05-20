@@ -1,6 +1,12 @@
 import { BASE_URL } from '@/constants/settings.config';
 import { IntrospectionType, QueryVariablesType } from '@/types/api.types';
-import { buildClientSchema, getIntrospectionQuery, printSchema } from 'graphql';
+import {
+  buildASTSchema,
+  buildClientSchema,
+  getIntrospectionQuery,
+  parse,
+  printSchema,
+} from 'graphql';
 
 export const fetchGraphQLSchema = async () => {
   try {
@@ -14,7 +20,7 @@ export const fetchGraphQLSchema = async () => {
     });
     const { data }: IntrospectionType = await response.json();
     const schema = buildClientSchema(data);
-    return printSchema(schema);
+    return buildASTSchema(parse(printSchema(schema)));
   } catch (error) {
     console.error(`fetchGraphQLSchema => ${error}`);
   }
