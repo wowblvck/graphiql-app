@@ -96,5 +96,13 @@
   "error404": {
     "title": "Sorry, the page you visited does not exist.",
     "backHome": "Back Home"
+  },
+  "playground": {
+    "queryPlaceholder": "Write your QraphQL query here",
+    "responsePlaceholder": "Server response:",
+    "variables": "Variables",
+    "executeQuery": "Execute query",
+    "clearQueryArea": "Clear query area",
+    "copyQuery": "Copy query"
   }
 }

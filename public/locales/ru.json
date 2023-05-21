@@ -96,5 +96,13 @@
   "error404": {
     "title": "Извините, такой страницы не существует.",
     "backHome": "Вернуться на главную"
+  },
+  "playground": {
+    "queryPlaceholder": "Введите ваш QraphQL запрос",
+    "responsePlaceholder": "Ответ сервера:",
+    "variables": "Свойства",
+    "executeQuery": "Выполнить запрос",
+    "clearQueryArea": "Очистить область запроса",
+    "copyQuery": "Копировать запрос"
   }
 }
