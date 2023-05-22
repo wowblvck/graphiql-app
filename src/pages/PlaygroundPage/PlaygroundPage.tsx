@@ -3,6 +3,7 @@ import { Layout, Row, Col, Grid, Spin } from 'antd';
 import { BookOutlined } from '@ant-design/icons';
 import { useState, Suspense, lazy } from 'react';
 import { SideMenuItemsType } from '@/types/side-menu.types';
+import DocsNav from '@/components/DocsNav/DocsNav';
 
 const { Content } = Layout;
 const { useBreakpoint } = Grid;
@@ -48,6 +49,7 @@ const PlaygroundPage = () => {
             }}
           >
             <Suspense fallback={<Spin size="large" />}>
+              <DocsNav />
               {sideMenuItems.find((item) => item.name === element)?.component}
             </Suspense>
           </Col>
