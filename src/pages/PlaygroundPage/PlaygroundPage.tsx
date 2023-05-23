@@ -9,9 +9,10 @@ import SideMenu from '@/components/SideMenu/SideMenu';
 import React, { useState, Suspense, lazy } from 'react';
 import { prettierResponse } from '@/utils/prettierResponse';
 import { SideMenuItemsType } from '@/types/side-menu.types';
-import { Layout, Row, Col, Grid, Spin, Space, Button } from 'antd';
+import { Layout, Row, Col, Grid, Spin, Space, Button, Collapse, theme } from 'antd';
 import { BookOutlined, CaretRightOutlined, CopyOutlined, DeleteOutlined } from '@ant-design/icons';
 
+const { Panel } = Collapse;
 const { Content } = Layout;
 const { useBreakpoint } = Grid;
 
@@ -28,13 +29,15 @@ const menuItems: SideMenuItemsType[] = [
 
 const PlaygroundPage = () => {
   const { t } = useTranslation();
-  const { xs, lg } = useBreakpoint();
   const clipboard = useClipboard();
+  const { xs, lg } = useBreakpoint();
+  const { token } = theme.useToken();
   const [element, setElement] = useState('');
   const [response, setResponse] = useState('');
   const [variablesValue, setVariablesValue] = useState('');
   const [playgroundValue, setPlaygroundValue] = useState('');
   const [sideMenuItems, setSideMenuItems] = useState([...menuItems]);
+  const [isVariablesOpen, setIsVariablesOpen] = useState<string[]>(['1']);
   const isOpen = sideMenuItems.find((item) => item.name === element)?.isOpen;
 
   const getElementByClick = (key: string) => {
@@ -57,6 +60,11 @@ const PlaygroundPage = () => {
   const startQueryFetch = async (playgroundValue: string) => {
     const response = await queryFetch(playgroundValue);
     setResponse(JSON.stringify(response));
+  };
+
+  const onChange = (key: string | string[]) => {
+    console.log(key);
+    isVariablesOpen.includes('1') ? setIsVariablesOpen([]) : setIsVariablesOpen(['1']);
   };
 
   return (
@@ -93,7 +101,7 @@ const PlaygroundPage = () => {
                 overflow: 'hidden',
               }}
             >
-              <Row style={{ height: '70%' }}>
+              <Row style={{ height: isVariablesOpen.includes('1') ? '70%' : '91%' }}>
                 <Col span={xs ? 21 : 22}>
                   <AceEditor
                     name="query area"
@@ -143,31 +151,50 @@ const PlaygroundPage = () => {
                   </Space>
                 </Col>
               </Row>
-              <Row style={{ height: '30%' }}>
-                <Col span={24} style={{ borderTop: 'solid 1px #d3d3d3', padding: '0' }}>
-                  <p style={{ margin: '5px' }}>{t('playground.variables')}</p>
-                  <AceEditor
-                    name="variables area"
-                    mode="javascript"
-                    theme="github"
-                    onChange={(value) => variablesOnChange(value)}
-                    fontSize={14}
-                    showGutter={true}
-                    highlightActiveLine={true}
-                    value={variablesValue}
-                    setOptions={{
-                      enableBasicAutocompletion: false,
-                      enableLiveAutocompletion: false,
-                      enableSnippets: false,
-                      showLineNumbers: true,
-                      tabSize: 2,
-                      useWorker: false,
-                    }}
+              <Row style={{ height: isVariablesOpen.includes('1') ? '30%' : '9%' }}>
+                <Col span={24} style={{ borderTop: 'solid 1px #d3d3d3' }}>
+                  <Collapse
+                    bordered={false}
+                    defaultActiveKey={isVariablesOpen}
+                    expandIconPosition="end"
+                    expandIcon={({ isActive }) => (
+                      <CaretRightOutlined rotate={isActive ? 90 : -90} />
+                    )}
+                    onChange={onChange}
                     style={{
-                      width: '100%',
-                      height: '100%',
+                      background: token.colorBgContainer,
                     }}
-                  />
+                  >
+                    <Panel
+                      header={t('playground.variables')}
+                      key="1"
+                      style={{
+                        marginBottom: 24,
+                        background: token.colorFillAlter,
+                        borderRadius: token.borderRadiusLG,
+                        border: 'none',
+                      }}
+                    >
+                      <AceEditor
+                        name="variables area"
+                        mode="javascript"
+                        theme="github"
+                        onChange={(value) => variablesOnChange(value)}
+                        fontSize={14}
+                        showGutter={false}
+                        highlightActiveLine={true}
+                        value={variablesValue}
+                        setOptions={{
+                          tabSize: 2,
+                          useWorker: false,
+                        }}
+                        style={{
+                          width: '100%',
+                          height: '200px',
+                        }}
+                      />
+                    </Panel>
+                  </Collapse>
                 </Col>
               </Row>
             </div>
