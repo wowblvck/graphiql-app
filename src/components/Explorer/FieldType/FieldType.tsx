@@ -3,16 +3,10 @@ import { FC } from 'react';
 
 const { Title, Paragraph } = Typography;
 
-type FieldTypeProps = {
-  fieldTypeName: string;
-};
-
-const FieldType: FC<FieldTypeProps> = (props) => {
-  const { fieldTypeName } = props;
-
+const FieldType: FC = () => {
   return (
     <Space direction="vertical">
-      <Title level={3}>{fieldTypeName}</Title>
+      <Title level={3}>Image</Title>
       <Paragraph>
         {/* {fields.map((el) => (
           <div className="div" key={fieldTypeName.name}>

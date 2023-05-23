@@ -3,18 +3,17 @@ import { Layout, Row, Col, Grid, Spin } from 'antd';
 import { BookOutlined } from '@ant-design/icons';
 import { useState, Suspense, lazy } from 'react';
 import { SideMenuItemsType } from '@/types/side-menu.types';
-import DocsNav from '@/components/DocsNav/DocsNav';
 
 const { Content } = Layout;
 const { useBreakpoint } = Grid;
 
-const Docs = lazy(() => import('@components/Docs/Docs'));
+const Explorer = lazy(() => import('@components/Explorer/Explorer'));
 
 const menuItems: SideMenuItemsType[] = [
   {
     name: 'docs',
     icon: <BookOutlined />,
-    component: <Docs />,
+    component: <Explorer />,
     isOpen: false,
   },
 ];
@@ -37,22 +36,24 @@ const PlaygroundPage = () => {
   return (
     <Layout>
       <SideMenu items={sideMenuItems} handleClick={getElementByClick} />
-      <Content style={{ display: 'flex' }}>
-        <Row style={{ width: '100%' }}>
-          <Col
-            span={isOpen ? 24 : 0}
-            lg={isOpen ? 6 : 0}
-            style={{
-              height: lg ? '100%' : '250px',
-              overflow: 'auto',
-              paddingLeft: '5px',
-            }}
-          >
-            <Suspense fallback={<Spin size="large" />}>
-              <DocsNav />
-              {sideMenuItems.find((item) => item.name === element)?.component}
-            </Suspense>
-          </Col>
+      <Content>
+        <Row style={{ height: '100%' }}>
+          {isOpen && (
+            <Col
+              span={24}
+              lg={6}
+              style={{
+                height: lg ? '100%' : '250px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Suspense fallback={<Spin size="large" />}>
+                {sideMenuItems.find((item) => item.name === element)?.component}
+              </Suspense>
+            </Col>
+          )}
           <Col span={24} lg={isOpen ? 9 : 12} style={{ backgroundColor: 'tomato' }}>
             EDITOR
           </Col>

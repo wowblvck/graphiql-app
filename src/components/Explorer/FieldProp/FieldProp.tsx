@@ -10,7 +10,7 @@ type QueryMethodProps = {
   field: GraphQLField<unknown, unknown, unknown> | undefined;
 };
 
-const QueryMethod: FC<QueryMethodProps> = (props) => {
+const FieldProp: FC<QueryMethodProps> = (props) => {
   const { field } = props;
 
   const [arg, setArg] = useState<GraphQLArgument>();
@@ -48,11 +48,11 @@ const QueryMethod: FC<QueryMethodProps> = (props) => {
       ) : (
         <>
           {isArgsTypeOpen && <ArgsType arg={arg} />}
-          {isFieldTypeOpen && <FieldType fieldTypeName={field?.type.toString() || ''} />}
+          {isFieldTypeOpen && <FieldType />}
         </>
       )}
     </Space>
   );
 };
 
-export default QueryMethod;
+export default FieldProp;
