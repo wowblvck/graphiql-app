@@ -28,7 +28,7 @@ const menuItems: SideMenuItemsType[] = [
 
 const PlaygroundPage = () => {
   const { t } = useTranslation();
-  const { lg } = useBreakpoint();
+  const { xs, lg } = useBreakpoint();
   const clipboard = useClipboard();
   const [element, setElement] = useState('');
   const [response, setResponse] = useState('');
@@ -94,12 +94,12 @@ const PlaygroundPage = () => {
               }}
             >
               <Row style={{ height: '70%' }}>
-                <Col span={22}>
+                <Col span={xs ? 21 : 22}>
                   <AceEditor
                     name="query area"
                     placeholder={t('playground.queryPlaceholder')}
                     mode="javascript"
-                    theme="tomorrow"
+                    theme="github"
                     onChange={(value) => playgroundOnChange(value)}
                     fontSize={14}
                     showGutter={true}
@@ -119,20 +119,23 @@ const PlaygroundPage = () => {
                     }}
                   />
                 </Col>
-                <Col span={2} style={{ paddingTop: '7px' }}>
+                <Col span={xs ? 3 : 2} style={{ paddingTop: '7px' }}>
                   <Space direction="vertical" style={{ display: 'flex', alignItems: 'center' }}>
                     <Button
+                      size={xs ? 'small' : 'default'}
                       title={t('playground.executeQuery')}
                       type="primary"
                       icon={<CaretRightOutlined />}
-                      onClick={() => startQueryFetch(playgroundValue)}
+                      onClick={() => startQueryFetch(playgroundValue, variablesValue)}
                     ></Button>
                     <Button
+                      size={xs ? 'small' : 'default'}
                       title={t('playground.clearQueryArea')}
                       icon={<DeleteOutlined />}
                       onClick={() => setPlaygroundValue('')}
                     ></Button>
                     <Button
+                      size={xs ? 'small' : 'default'}
                       title={t('playground.copyQuery')}
                       icon={<CopyOutlined />}
                       onClick={() => clipboard.copy(playgroundValue)}
@@ -190,7 +193,7 @@ const PlaygroundPage = () => {
                 name="response area"
                 value={prettierResponse(response)}
                 mode="javascript"
-                theme="tomorrow"
+                theme="github"
                 onChange={(value) => variablesOnChange(value)}
                 fontSize={14}
                 showGutter={true}
