@@ -6,7 +6,7 @@ import { useClipboard } from 'use-clipboard-copy';
 import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/ext-language_tools';
 import SideMenu from '@/components/SideMenu/SideMenu';
-import React, { useState, Suspense, lazy } from 'react';
+import { useState, Suspense, lazy } from 'react';
 import { prettierResponse } from '@/utils/prettierResponse';
 import { SideMenuItemsType } from '@/types/side-menu.types';
 import { Layout, Row, Col, Grid, Spin, Space, Button } from 'antd';
@@ -102,7 +102,7 @@ const PlaygroundPage = () => {
                     name="query area"
                     placeholder={t('playground.queryPlaceholder')}
                     mode="javascript"
-                    theme="tomorrow"
+                    theme="github"
                     onChange={(value) => playgroundOnChange(value)}
                     fontSize={14}
                     showGutter={true}
@@ -193,7 +193,7 @@ const PlaygroundPage = () => {
                 name="response area"
                 value={prettierResponse(response)}
                 mode="javascript"
-                theme="tomorrow"
+                theme="github"
                 onChange={(value) => variablesOnChange(value)}
                 fontSize={14}
                 showGutter={true}
