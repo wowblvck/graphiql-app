@@ -2,19 +2,31 @@ import { BASE_URL } from '@/constants/settings.config';
 import { VariablesType } from '@/types/api.types';
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { graphqlRequestBaseQuery } from '@rtk-query/graphql-request-base-query';
-import { IntrospectionQuery, getIntrospectionQuery } from 'graphql';
+import {
+  GraphQLSchema,
+  IntrospectionQuery,
+  buildASTSchema,
+  buildClientSchema,
+  getIntrospectionQuery,
+  parse,
+  printSchema,
+} from 'graphql';
 import { gql } from 'graphql-request';
 
 export const graphqlApi = createApi({
   reducerPath: 'graphqlApi',
   baseQuery: graphqlRequestBaseQuery({ url: BASE_URL }),
   endpoints: (builder) => ({
-    getGraphQLSchema: builder.query<IntrospectionQuery, void>({
+    getGraphQLSchema: builder.query<GraphQLSchema, void>({
       query: () => ({
         document: gql`
           ${getIntrospectionQuery()}
         `,
       }),
+      transformResponse: (response: IntrospectionQuery) => {
+        const schema = buildClientSchema(response);
+        return buildASTSchema(parse(printSchema(schema)));
+      },
     }),
     getGraphQL: builder.query<string, { query: string; variables?: VariablesType }>({
       query: ({ query, variables }) => ({
@@ -27,4 +39,4 @@ export const graphqlApi = createApi({
   }),
 });
 
-export const { useGetGraphQLSchemaQuery, useGetGraphQLQuery } = graphqlApi;
+export const { useGetGraphQLQuery, useGetGraphQLSchemaQuery } = graphqlApi;

@@ -1,16 +1,17 @@
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import user from './reducers/user/user.reducer';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import explorer from './reducers/explorer/explorer.reducer';
 import { graphqlApi } from './reducers/api/api.reducer';
-import graphqlSlice from './reducers/graphql/graphql.reducer';
 
 const store = configureStore({
   reducer: {
     user,
-    graphqlSlice,
+    explorer,
     [graphqlApi.reducerPath]: graphqlApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(graphqlApi.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }).concat(graphqlApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
