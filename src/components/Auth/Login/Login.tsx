@@ -4,8 +4,6 @@ import { Button, Form, Input, Spin, notification, message } from 'antd';
 import { useAppDispatch } from '@/store/store';
 import { setUser } from '@/store/reducers/user/user.reducer';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-import { Routes } from '@/routes/router';
 import { FirebaseError } from 'firebase/app';
 import { useState } from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
@@ -20,7 +18,6 @@ type AuthForm = {
 const Login = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -52,7 +49,6 @@ const Login = () => {
               token,
             })
           );
-          navigate(Routes.Playground);
         });
       })
       .catch((error: FirebaseError) => {
@@ -72,7 +68,7 @@ const Login = () => {
     <Form
       initialValues={{ remember: true }}
       onFinish={handleSubmit(onSubmit)}
-      style={{ maxWidth: '300px', width: '100%' }}
+      style={{ width: '300px' }}
       size="large"
     >
       <Form.Item
