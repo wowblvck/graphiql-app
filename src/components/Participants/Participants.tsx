@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Participant } from './participants.types';
 import { Card, Col, Row, Typography, Grid, Space } from 'antd';
 import { participants } from '../../utils/participantsList.ts';
+import { lightBlue } from '@/constants/colors.ts';
 
 const { Title, Link } = Typography;
 const { useBreakpoint } = Grid;
@@ -10,7 +11,7 @@ const Participants = () => {
   const { md } = useBreakpoint();
   const { t } = useTranslation();
   return (
-    <Row justify="center" style={{ backgroundColor: '#f0f5ff', padding: '35px 0' }}>
+    <Row justify="center" style={{ backgroundColor: lightBlue, padding: '35px 0' }}>
       <Col>
         <Space direction="vertical" size="large" align="center">
           <Title level={2} style={{ textAlign: 'center', margin: '0' }}>
