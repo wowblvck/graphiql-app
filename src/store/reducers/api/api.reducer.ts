@@ -28,7 +28,7 @@ export const graphqlApi = createApi({
         return buildASTSchema(parse(printSchema(schema)));
       },
     }),
-    getGraphQL: builder.query<string, { query: string; variables?: VariablesType }>({
+    addGraphQLQuery: builder.mutation<string, { query: string; variables?: VariablesType }>({
       query: ({ query, variables }) => ({
         document: gql`
           ${query}
@@ -39,4 +39,4 @@ export const graphqlApi = createApi({
   }),
 });
 
-export const { useGetGraphQLQuery, useGetGraphQLSchemaQuery } = graphqlApi;
+export const { useGetGraphQLSchemaQuery, useAddGraphQLQueryMutation } = graphqlApi;
