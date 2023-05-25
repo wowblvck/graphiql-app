@@ -21,14 +21,21 @@ const EditorIDE = () => {
   const clipboard = useClipboard();
 
   const [editorValue, setEditorValue] = useState('');
-  const { isVariablesOpen } = useAppSelector((state) => state.editor);
+  const { isVariablesOpen, variablesValue } = useAppSelector((state) => state.editor);
 
   const [addGraphQLQuery] = useAddGraphQLQueryMutation();
   const dispatch = useAppDispatch();
 
-  const runEditor = async (value: string) => {
-    const response = await addGraphQLQuery({ query: value });
-    dispatch(setResponse(JSON.stringify(response)));
+  const runEditor = async (value: string, variables: string) => {
+    if (variables) {
+      const parsedVars = JSON.parse(`${variables}`);
+      console.log(parsedVars);
+      const response = await addGraphQLQuery({ query: value, variables: parsedVars });
+      dispatch(setResponse(JSON.stringify(response)));
+    } else {
+      const response = await addGraphQLQuery({ query: value });
+      dispatch(setResponse(JSON.stringify(response)));
+    }
   };
 
   return (
@@ -71,7 +78,7 @@ const EditorIDE = () => {
               title={t('playground.executeQuery')}
               type="primary"
               icon={<CaretRightOutlined />}
-              onClick={() => runEditor(editorValue)}
+              onClick={() => runEditor(editorValue, variablesValue)}
             ></Button>
             <Button
               size={xs ? 'small' : 'middle'}
