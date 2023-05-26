@@ -6,11 +6,12 @@ import { useClipboard } from 'use-clipboard-copy';
 import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/ext-language_tools';
 import SideMenu from '@/components/SideMenu/SideMenu';
-import { useState, Suspense, lazy } from 'react';
+import { useState, Suspense, lazy, useContext } from 'react';
 import { prettierResponse } from '@/utils/prettierResponse';
 import { SideMenuItemsType } from '@/types/side-menu.types';
 import { Layout, Row, Col, Grid, Spin, Space, Button } from 'antd';
 import { BookOutlined, CaretRightOutlined, CopyOutlined, DeleteOutlined } from '@ant-design/icons';
+import { HeightContext } from '@/contexts/HeightProvider';
 
 const { Content } = Layout;
 const { useBreakpoint } = Grid;
@@ -27,6 +28,7 @@ const menuItems: SideMenuItemsType[] = [
 ];
 
 const PlaygroundPage = () => {
+  const { headerHeight, footerHeight } = useContext(HeightContext);
   const { t } = useTranslation();
   const { lg } = useBreakpoint();
   const clipboard = useClipboard();
@@ -60,9 +62,11 @@ const PlaygroundPage = () => {
   };
 
   return (
-    <Layout>
+    <Layout
+      style={{ height: lg ? `calc(100vh - (${headerHeight}px + ${footerHeight}px))` : '100%' }}
+    >
       <SideMenu items={sideMenuItems} handleClick={getElementByClick} />
-      <Content>
+      <Content style={{ backgroundColor: 'white' }}>
         <Row style={{ height: '100%' }}>
           {isOpen && (
             <Col
@@ -73,6 +77,7 @@ const PlaygroundPage = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
+                overflow: 'auto',
               }}
             >
               <Suspense fallback={<Spin size="large" />}>
@@ -85,7 +90,6 @@ const PlaygroundPage = () => {
             lg={isOpen ? 9 : 12}
             style={{
               padding: '10px',
-              backgroundColor: 'white',
             }}
           >
             <div
@@ -177,7 +181,6 @@ const PlaygroundPage = () => {
             lg={isOpen ? 9 : 12}
             style={{
               padding: '10px',
-              backgroundColor: 'white',
             }}
           >
             <div

@@ -9,11 +9,16 @@ const { Link, Paragraph } = Typography;
 const { useBreakpoint } = Grid;
 const { Footer } = Layout;
 
-const _Footer = () => {
+type FooterProps = {
+  setRef: (node: HTMLDivElement | null) => void;
+};
+
+const _Footer: React.FC<FooterProps> = ({ setRef }) => {
   const { t } = useTranslation();
   const { xs } = useBreakpoint();
   return (
     <Footer
+      ref={setRef}
       style={{
         backgroundColor: darkBlue,
         color: white,
