@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/theme-github';
 import 'ace-builds/src-noconflict/mode-javascript';
+// import 'ace-builds/src-noconflict/mode-graphqlschema';
 import 'ace-builds/src-noconflict/ext-language_tools';
 import { useAddGraphQLQueryMutation } from '@/store/reducers/api/api.reducer';
 import { useAppDispatch, useAppSelector } from '@/store/store';
@@ -27,10 +28,12 @@ const EditorIDE = () => {
   const dispatch = useAppDispatch();
 
   const runEditor = async (value: string, variables: string) => {
+    //! TODO: doesnt work variables ,need to fix
+    // const valueJSON = JSON.stringify(value);
     if (variables) {
-      const parsedVars = JSON.parse(`${variables}`);
-      console.log(parsedVars);
-      const response = await addGraphQLQuery({ query: value, variables: parsedVars });
+      // const parsedVars = JSON.stringify(variables);
+      // console.log(valueJSON, parsedVars);
+      const response = await addGraphQLQuery({ query: value, variables: variables });
       dispatch(setResponse(JSON.stringify(response, null, 2)));
     } else {
       const response = await addGraphQLQuery({ query: value });
@@ -59,6 +62,7 @@ const EditorIDE = () => {
             showGutter={true}
             highlightActiveLine={true}
             value={editorValue}
+            wrapEnabled={true}
             setOptions={{
               enableBasicAutocompletion: false,
               enableLiveAutocompletion: false,

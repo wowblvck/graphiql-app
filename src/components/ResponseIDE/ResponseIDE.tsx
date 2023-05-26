@@ -26,6 +26,8 @@ const ResponseIDE = () => {
         theme="github"
         fontSize={14}
         showGutter={true}
+        readOnly={true}
+        wrapEnabled={true}
         highlightActiveLine={true}
         setOptions={{
           enableBasicAutocompletion: false,

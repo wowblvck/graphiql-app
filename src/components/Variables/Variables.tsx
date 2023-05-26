@@ -56,6 +56,7 @@ const Variables = () => {
           showGutter={false}
           highlightActiveLine={true}
           value={variablesValue}
+          wrapEnabled={true}
           setOptions={{
             tabSize: 2,
             useWorker: false,
