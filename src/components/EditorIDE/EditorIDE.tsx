@@ -31,10 +31,10 @@ const EditorIDE = () => {
       const parsedVars = JSON.parse(`${variables}`);
       console.log(parsedVars);
       const response = await addGraphQLQuery({ query: value, variables: parsedVars });
-      dispatch(setResponse(JSON.stringify(response)));
+      dispatch(setResponse(JSON.stringify(response, null, 2)));
     } else {
       const response = await addGraphQLQuery({ query: value });
-      dispatch(setResponse(JSON.stringify(response)));
+      dispatch(setResponse(JSON.stringify(response, null, 2)));
     }
   };
 

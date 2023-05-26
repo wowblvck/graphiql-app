@@ -1,4 +1,3 @@
-import { prettierResponse } from '@/utils/prettierResponse';
 import { useTranslation } from 'react-i18next';
 
 import AceEditor from 'react-ace';
@@ -22,7 +21,7 @@ const ResponseIDE = () => {
       <AceEditor
         placeholder={t('playground.responsePlaceholder')}
         name="response area"
-        value={prettierResponse(responseValue)}
+        value={responseValue}
         mode="javascript"
         theme="github"
         fontSize={14}
