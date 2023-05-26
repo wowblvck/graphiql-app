@@ -61,10 +61,13 @@ export const routerLinks: Router[] = [
     name: 'home',
     path: '/',
     icon: <HomeOutlined />,
+    isPrivate: false,
   },
   {
     name: 'playground',
     path: '/playground',
+    isPrivate: true,
+    isVisible: false,
   },
 ];
 
