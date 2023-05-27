@@ -29,15 +29,13 @@ const EditorIDE = () => {
 
   const runEditor = async (value: string, variables: string) => {
     //! TODO: doesnt work variables ,need to fix
-    // const valueJSON = JSON.stringify(value);
-    if (variables) {
-      // const parsedVars = JSON.stringify(variables);
-      // console.log(valueJSON, parsedVars);
-      const response = await addGraphQLQuery({ query: value, variables: variables });
+    console.log(variables);
+    try {
+      const vars = variables ? JSON.parse(variables) : {};
+      const response = await addGraphQLQuery({ query: value, variables: vars });
       dispatch(setResponse(JSON.stringify(response, null, 2)));
-    } else {
-      const response = await addGraphQLQuery({ query: value });
-      dispatch(setResponse(JSON.stringify(response, null, 2)));
+    } catch (error) {
+      console.log(`RUN EDITOR ERROR => ${error}`);
     }
   };
 

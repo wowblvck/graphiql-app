@@ -1,5 +1,5 @@
 import { BASE_URL } from '@/constants/settings.config';
-import { IntrospectionType, QueryVariablesType } from '@/types/api.types';
+import { IntrospectionType } from '@/types/api.types';
 import {
   buildASTSchema,
   buildClientSchema,
@@ -26,14 +26,15 @@ export const fetchGraphQLSchema = async () => {
   }
 };
 
-export const queryFetch = async (query: string, variables?: QueryVariablesType) => {
+export const queryFetch = async (query: string, variables?: string) => {
   try {
+    const vars = variables ? JSON.parse(variables) : {};
     const response = await fetch(BASE_URL, {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
         query: query,
-        variables: variables,
+        variables: vars,
       }),
     });
     const data = await response.json();
