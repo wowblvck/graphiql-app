@@ -9,10 +9,10 @@ import 'ace-builds/src-noconflict/theme-github';
 import 'ace-builds/src-noconflict/mode-javascript';
 // import 'ace-builds/src-noconflict/mode-graphqlschema';
 import 'ace-builds/src-noconflict/ext-language_tools';
-import { useAddGraphQLQueryMutation } from '@/store/reducers/api/api.reducer';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { setResponse } from '@/store/reducers/editor/editor.reducer';
 import Variables from '../Variables/Variables';
+import { fetchGraphQLQuery } from '@/api/api';
 
 const { useBreakpoint } = Grid;
 
@@ -23,21 +23,23 @@ const EditorIDE = () => {
 
   const [editorValue, setEditorValue] = useState('');
   const { isVariablesOpen, variablesValue } = useAppSelector((state) => state.editor);
-
-  const [addGraphQLQuery] = useAddGraphQLQueryMutation();
   const dispatch = useAppDispatch();
 
   const runEditor = async (value: string, variables: string) => {
-    //! TODO: doesnt work variables ,need to fix
-    console.log(variables);
-    try {
-      const vars = variables ? JSON.parse(variables) : {};
-      const response = await addGraphQLQuery({ query: value, variables: vars });
-      dispatch(setResponse(JSON.stringify(response, null, 2)));
-    } catch (error) {
-      console.log(`RUN EDITOR ERROR => ${error}`);
-    }
+    const response = await fetchGraphQLQuery(value, variables);
+    dispatch(setResponse(JSON.stringify(response, null, 2)));
   };
+  // const [addGraphQLQuery] = useAddGraphQLQueryMutation();
+  // const runEditor = async (value: string, variables: string) => {
+  //   console.log(variables);
+  //   try {
+  //     const vars = variables ? JSON.parse(variables) : {};
+  //     const response = await addGraphQLQuery({ query: value, variables: vars });
+  //     dispatch(setResponse(JSON.stringify(response, null, 2)));
+  //   } catch (error) {
+  //     console.log(`RUN EDITOR ERROR => ${error}`);
+  //   }
+  // };
 
   return (
     <div

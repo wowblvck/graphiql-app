@@ -29,15 +29,15 @@ export const graphqlApi = createApi({
       },
     }),
     //! VariableTypes or unknown on variables
-    addGraphQLQuery: builder.mutation<string, { query: string; variables?: unknown }>({
-      query: ({ query, variables }) => ({
-        document: gql`
-          ${query}
-        `,
-        variables: variables,
-      }),
-    }),
+    // addGraphQLQuery: builder.mutation<string, { query: string; variables?: unknown }>({
+    //   query: ({ query, variables }) => ({
+    //     document: gql`
+    //       ${query}
+    //     `,
+    //     variables: variables,
+    //   }),
+    // }),
   }),
 });
 
-export const { useGetGraphQLSchemaQuery, useAddGraphQLQueryMutation } = graphqlApi;
+export const { useGetGraphQLSchemaQuery } = graphqlApi;
