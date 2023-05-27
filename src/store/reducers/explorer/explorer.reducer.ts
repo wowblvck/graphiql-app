@@ -1,33 +1,20 @@
+import { ExplorerRoute } from '@/types/explorer-nav.types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import {
-  GraphQLArgument,
-  GraphQLField,
-  GraphQLFieldMap,
-  GraphQLOutputType,
-  GraphQLSchema,
-} from 'graphql';
+import { OperationTypeNode } from 'graphql';
 
 type ExplorerType = {
-  schema: GraphQLSchema | null;
-  fields: GraphQLFieldMap<unknown, unknown> | null;
-  currentField: GraphQLField<unknown, unknown, unknown> | null;
-  currentArg: GraphQLArgument | null;
-  currentFieldType: GraphQLOutputType | null;
   routes: {
-    route: string;
-    prevRoute: string;
-    history: string[];
+    route: ExplorerRoute;
+    name: string;
+    type?: OperationTypeNode | null;
+    history: Pick<ExplorerType['routes'], 'route' | 'name' | 'type'>[];
   };
 };
 const initialState: ExplorerType = {
-  schema: null,
-  fields: null,
-  currentField: null,
-  currentArg: null,
-  currentFieldType: null,
   routes: {
-    route: 'docs',
-    prevRoute: '',
+    route: ExplorerRoute.Docs,
+    name: 'Docs',
+    type: null,
     history: [],
   },
 };
@@ -36,41 +23,36 @@ const explorerSlice = createSlice({
   name: 'explorer',
   initialState,
   reducers: {
-    // setSchema: (state, action) => {
-    //   state.schema = action.payload;
-    // },
-    // setFields: (state, action) => {
-    //   state.fields = action.payload;
-    // },
-    addRoute: (state, action: PayloadAction<string>) => {
-      const { route, history } = state.routes;
-      const updatedHistory = [...history, route];
-      return {
-        ...state,
-        routes: {
-          ...state.routes,
-          route: action.payload,
-          prevRoute: route,
-          history: updatedHistory,
-        },
-      };
+    addRoute: (
+      state,
+      action: PayloadAction<Pick<ExplorerType['routes'], 'route' | 'name' | 'type'>>
+    ) => {
+      const { route, name, type } = state.routes;
+      const { route: routeAction, name: nameAction, type: typeAction } = action.payload;
+      state.routes.route = routeAction;
+      state.routes.name = nameAction;
+      state.routes.type = typeAction;
+      state.routes.history.push({
+        route: route,
+        name: name,
+        type: type,
+      });
     },
     removeRoute: (state) => {
       const { history } = state.routes;
-      const updatedHistory = [...history];
-      const updatedRoute = updatedHistory[updatedHistory.length - 1];
-      updatedHistory.pop();
-      return {
-        ...state,
-        routes: {
-          ...state.routes,
-          route: updatedRoute,
-          history: updatedHistory,
-        },
-      };
+      state.routes.route = history[history.length - 1].route;
+      state.routes.name = history[history.length - 1].name;
+      state.routes.type = history[history.length - 1].type;
+      state.routes.history.pop();
+    },
+    clearExplorer: (state) => {
+      state.routes.route = ExplorerRoute.Docs;
+      state.routes.name = 'Docs';
+      state.routes.type = null;
+      state.routes.history = [];
     },
   },
 });
 
-export const { addRoute, removeRoute } = explorerSlice.actions;
+export const { addRoute, removeRoute, clearExplorer } = explorerSlice.actions;
 export default explorerSlice.reducer;

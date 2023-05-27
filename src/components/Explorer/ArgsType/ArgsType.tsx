@@ -1,23 +1,30 @@
-import { Space, Typography } from 'antd';
-import { GraphQLArgument } from 'graphql';
-import { FC } from 'react';
+import { useGetGraphQLSchemaQuery } from '@/store/reducers/api/api.reducer';
+import { useAppSelector } from '@/store/store';
+import { removeBackquote } from '@/utils/backQuote';
+import { Typography } from 'antd';
+import { GraphQLScalarType } from 'graphql';
+import regexifyString from 'regexify-string';
 
-const { Title } = Typography;
+const { Text } = Typography;
 
-type ArgsTypeProps = {
-  arg: GraphQLArgument | undefined;
-};
-
-const ArgsType: FC<ArgsTypeProps> = (props) => {
-  const { arg } = props;
-  const argType = arg && arg.type.toString();
-  // GraphQLField<unknown, unknown, unknown>  GraphQLArgument[]
-  console.log(argType);
+const ArgsType = () => {
+  const { data, isSuccess } = useGetGraphQLSchemaQuery();
+  const { name } = useAppSelector((state) => state.explorer.routes);
+  const argType = isSuccess ? (data?.getType(name) as GraphQLScalarType) : undefined;
   return (
-    <Space direction="vertical">
-      <Title level={3}>{argType}</Title>
-      {/* <Paragraph>{argType?.ofType.description}</Paragraph> */}
-    </Space>
+    <Text>
+      {regexifyString({
+        pattern: /`([^`]+)`/g,
+        decorator: (match, index) => {
+          return (
+            <Text key={`${match}_${index}`} code>
+              {removeBackquote(match)}
+            </Text>
+          );
+        },
+        input: argType?.description as string,
+      })}
+    </Text>
   );
 };
 

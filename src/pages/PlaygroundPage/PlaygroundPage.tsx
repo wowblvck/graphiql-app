@@ -6,12 +6,14 @@ import { useClipboard } from 'use-clipboard-copy';
 import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/ext-language_tools';
 import SideMenu from '@/components/SideMenu/SideMenu';
-import { useState, Suspense, lazy, useContext } from 'react';
+import { useState, Suspense, lazy, useContext, useEffect } from 'react';
 import { prettierResponse } from '@/utils/prettierResponse';
 import { SideMenuItemsType } from '@/types/side-menu.types';
 import { Layout, Row, Col, Grid, Spin, Space, Button } from 'antd';
 import { BookOutlined, CaretRightOutlined, CopyOutlined, DeleteOutlined } from '@ant-design/icons';
 import { HeightContext } from '@/contexts/HeightProvider';
+import { useAppDispatch } from '@/store/store';
+import { clearExplorer } from '@/store/reducers/explorer/explorer.reducer';
 
 const { Content } = Layout;
 const { useBreakpoint } = Grid;
@@ -38,6 +40,13 @@ const PlaygroundPage = () => {
   const [playgroundValue, setPlaygroundValue] = useState('');
   const [sideMenuItems, setSideMenuItems] = useState([...menuItems]);
   const isOpen = sideMenuItems.find((item) => item.name === element)?.isOpen;
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearExplorer());
+    };
+  }, [dispatch]);
 
   const getElementByClick = (key: string) => {
     setElement(key);

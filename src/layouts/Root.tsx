@@ -1,25 +1,29 @@
 import { useLocation, useOutlet } from 'react-router-dom';
-import { Grid, Layout } from 'antd';
+import { Layout } from 'antd';
 import Header from '@components/Header/Header';
 import Footer from '@components/Footer/Footer';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import './Root.css';
+import { useElementSize } from 'usehooks-ts';
+import HeightProvider from '@/contexts/HeightProvider';
 
 const Root = () => {
   const location = useLocation();
   const currentOutlet = useOutlet();
-  const { useBreakpoint } = Grid;
-  const { lg } = useBreakpoint();
+  const [headerRef, { height: headerHeight }] = useElementSize();
+  const [footerRef, { height: footerHeight }] = useElementSize();
 
   return (
-    <Layout style={{ minHeight: lg ? '100vh' : '150vh' }}>
-      <Header />
+    <Layout className="root-layout">
+      <Header setRef={headerRef} />
       <SwitchTransition>
         <CSSTransition key={location.pathname} classNames="fade" timeout={300} unmountOnExit>
-          {currentOutlet}
+          <HeightProvider headerHeight={headerHeight} footerHeight={footerHeight}>
+            {currentOutlet}
+          </HeightProvider>
         </CSSTransition>
       </SwitchTransition>
-      <Footer />
+      <Footer setRef={footerRef} />
     </Layout>
   );
 };
