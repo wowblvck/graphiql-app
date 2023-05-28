@@ -1,16 +1,14 @@
 <h1 align="center">GraphiQL IDE for graphQL</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
-  <a href="https://school-book-production.up.railway.app/api/docs" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
 </p>
 
 > EN: GraphiQL is a playground/IDE for graphQL requests.
 
 > RU: GraphiQL — это игровая площадка/IDE для запросов graphQL.
 
----
+<h2 align="center"><a href="https://graphiql-rs-app.netlify.app/">✨ Link on Deploy</a></h2>
+
 The application is based on the *JavaScript* stack.
 
 The client part is written using:
@@ -22,22 +20,20 @@ The client part is written using:
 - [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
 - [i18next](https://react.i18next.com/)
----
 
-### ✨ [Demo](https://school-record-book-rss.netlify.app/)
+Data Storage:
+- [Firebase](https://firebase.google.com/)
+
+Design System:
+- [Ant Design](https://ant.design/)
+
+Build System:
+- [Vite](https://vitejs.dev/)
 
 ## Authors
 
-👤 **Viktor Minkov**
-
-👤 **Railia Balakaeva**
-
-👤 **Indar Basto**
-
-* Github: [@ViktorMinkov](https://github.com/ViktorMinkov)
-* Github: [@RallyZK](https://github.com/RallyZK)
-* Github: [@wowblvck](https://github.com/wowblvck)
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/wowblvck/graphiql-app/issues). 
+|Author|Github|
+|----|----|
+|Viktor Minkov|[@ViktorMinkov](https://github.com/ViktorMinkov)|
+|Railia Balakaeva|[@RallyZK](https://github.com/RallyZK)|
+|Indar Basto|[@wowblvck](https://github.com/wowblvck)|
