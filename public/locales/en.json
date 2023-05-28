@@ -1,0 +1,126 @@
+{
+  "navigation": {
+    "link": {
+      "home": "Home",
+      "about": "About Project",
+      "playground": "GraphiQL IDE"
+    },
+    "docs": {
+      "description": "A GraphQL schema provides a root type for each kind of operation"
+    }
+  },
+  "welcomeSection": {
+    "title": "Welcome to GraphiQL!",
+    "subtitle": "GraphiQL is a playground/IDE for graphQL requests",
+    "description": "This playground created as a result of the final project on the React 2023 Q1 course by RS School. GraphiQL provides a complete and understandable description of the data in Rick and Morty API, gives you the power to ask for exactly what you need and nothing more, enables powerful developer tools.",
+    "advantages": {
+      "ask": "Ask for what you need, get exactly that",
+      "get": "Get many resources in a single request",
+      "describe": "Describe what’s possible with a type system"
+    },
+    "getStarted": "Get Started"
+  },
+  "developers": {
+    "developers": "Developers",
+    "names": {
+      "basto": "Indar Basto",
+      "minkov": "Viktor Minkov",
+      "balakaeva": "Railia Balakaeva"
+    },
+    "roles": {
+      "developer": "Frontend developer",
+      "teamLead": "Team lead"
+    }
+  },
+  "auth": {
+    "loading_btn": "Loading",
+    "login_btn": "Sign In",
+    "home_btn": "Home",
+    "logout_btn": "Logout",
+    "placeholder_email": "Email",
+    "placeholder_password": "Password",
+    "success": {
+      "title": "You have successfully logged in!",
+      "subTitle": "You will be redirected to the GraphiQL IDE page in {{count}}. If it doesn't, please click the button.",
+      "button": "Go to GraphiQL IDE"
+    },
+    "not_authorized": {
+      "title": "You will be redirected to the Home page in {{countdown}}. If it doesn't, please click the button."
+    },
+    "login": {
+      "login_btn": "Log In",
+      "login_state": "Or <State>register now</State>",
+      "success_message": "You have successfully logged in!"
+    },
+    "register": {
+      "placeholder_check_password": "Repeat password",
+      "register_btn": "Register",
+      "register_state": "Or <State>login now</State>",
+      "success_message": "You have successfully registered!"
+    },
+    "validator": {
+      "required_email": "Please input your email!",
+      "required_password": "Please input your password!",
+      "invalid_email": "Invalid email format",
+      "password": {
+        "min_value": "Password must be at least 8 characters",
+        "need_letter": "Password must contain at least one letter",
+        "need_digit": "Password must contain at least one digit",
+        "need_special": "Password must contain at least one special character",
+        "must_match": "Passwords must match"
+      }
+    },
+    "errors": {
+      "type": {
+        "login": "Authorization",
+        "register": "Registration"
+      },
+      "not_authorized": "Sorry, you are not authorized to access this page.",
+      "auth/too-many-requests": "Too many login attempts. Try later",
+      "auth/network-request-failed": "Network problems. Check your internet connection",
+      "auth/wrong-password": "Wrong password",
+      "auth/invalid-email": "Wrong email address",
+      "auth/user-not-found": "User not found",
+      "auth/email-already-in-use": "Email already in use",
+      "auth/user-disabled": "Account is disabled"
+    },
+    "logout": {
+      "modal": {
+        "title": "Do you want to log out?",
+        "content": "You will not be able to use the GraphiQL IDE if you log out!",
+        "cancel": "Cancel",
+        "confirm": "Log out"
+      },
+      "success_message": "You have successfully logged out!"
+    }
+  },
+  "error404": {
+    "title": "Sorry, the page you visited does not exist.",
+    "backHome": "Back Home"
+  },
+  "playground": {
+    "queryPlaceholder": "Write your QraphQL query here",
+    "responsePlaceholder": "Server response:",
+    "variables": "Variables",
+    "executeQuery": "Execute query",
+    "clearQueryArea": "Clear query area",
+    "copyQuery": "Copy query",
+    "errors": {
+      "type":{
+        "response": "Error of GraphQL request"
+      },
+      "status": "Status"
+    }
+  },
+  "explorer": {
+    "root": {
+      "title": "A GraphQL schema provides a root type for each kind of operation",
+      "types": "Root Types",
+      "type": {
+        "query": "Query",
+        "mutation": "Mutation",
+        "subscription": "Subscription"
+      }
+    }
+  }
+}
