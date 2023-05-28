@@ -1,10 +1,8 @@
 import { Routes } from '@/routes/router';
-import { useAppDispatch } from '@/store/store';
 import { ExclamationCircleFilled, LoginOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Button, Modal, message, Grid } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { removeUser } from '@/store/reducers/user/user.reducer';
 import { useAuth } from '@/hooks/useAuth';
 import { getAuth, signOut } from 'firebase/auth';
 
@@ -14,7 +12,6 @@ const { useBreakpoint } = Grid;
 const AuthButton = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const dispatch = useAppDispatch();
   const { md } = useBreakpoint();
   const { isAuth, isLoading } = useAuth();
 
@@ -36,8 +33,6 @@ const AuthButton = () => {
                 marginTop: '10vh',
               },
             });
-            dispatch(removeUser());
-            navigate(Routes.Home);
           })
           .catch((error) => {
             console.log(error);

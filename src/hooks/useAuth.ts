@@ -1,4 +1,4 @@
-import { setUser } from '@/store/reducers/user/user.reducer';
+import { removeUser, setUser } from '@/store/reducers/user/user.reducer';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { getAuth } from 'firebase/auth';
 import { useEffect, useState } from 'react';
@@ -21,6 +21,8 @@ export const useAuth = () => {
             })
           );
         });
+      } else {
+        dispatch(removeUser());
       }
       setIsLoading(false);
     });

@@ -35,6 +35,7 @@
   "auth": {
     "loading_btn": "Loading",
     "login_btn": "Sign In",
+    "home_btn": "Home",
     "logout_btn": "Logout",
     "placeholder_email": "Email",
     "placeholder_password": "Password",
@@ -42,6 +43,9 @@
       "title": "You have successfully logged in!",
       "subTitle": "You will be redirected to the GraphiQL IDE page in {{count}}. If it doesn't, please click the button.",
       "button": "Go to GraphiQL IDE"
+    },
+    "not_authorized": {
+      "title": "You will be redirected to the Home page in {{countdown}}. If it doesn't, please click the button."
     },
     "login": {
       "login_btn": "Log In",
