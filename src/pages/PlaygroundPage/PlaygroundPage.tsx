@@ -70,22 +70,10 @@ const PlaygroundPage = () => {
               </Suspense>
             </Col>
           )}
-          <Col
-            span={24}
-            lg={isOpen ? 9 : 12}
-            style={{
-              padding: '10px',
-            }}
-          >
+          <Col span={24} lg={isOpen ? 9 : 12} style={{ padding: '10px' }}>
             <EditorIDE />
           </Col>
-          <Col
-            span={24}
-            lg={isOpen ? 9 : 12}
-            style={{
-              padding: '10px',
-            }}
-          >
+          <Col span={24} lg={isOpen ? 9 : 12} style={{ padding: '10px' }}>
             <ResponseIDE />
           </Col>
         </Row>

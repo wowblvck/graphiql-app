@@ -100,7 +100,7 @@
   "playground": {
     "queryPlaceholder": "Введите ваш QraphQL запрос",
     "responsePlaceholder": "Ответ сервера:",
-    "variables": "Свойства",
+    "variables": "Переменные",
     "executeQuery": "Выполнить запрос",
     "clearQueryArea": "Очистить область запроса",
     "copyQuery": "Копировать запрос"

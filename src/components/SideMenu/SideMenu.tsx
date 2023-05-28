@@ -13,7 +13,7 @@ const SideMenu: FC<SideMenuProps> = (props) => {
   const { items, handleClick } = props;
 
   return (
-    <Sider collapsed={true}>
+    <Sider collapsed={true} collapsedWidth={60}>
       <Menu
         theme="light"
         mode="inline"

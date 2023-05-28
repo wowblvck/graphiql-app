@@ -1,5 +1,5 @@
 import { BASE_URL } from '@/constants/settings.config';
-import { IntrospectionType, QueryVariablesType } from '@/types/api.types';
+import { IntrospectionType } from '@/types/api.types';
 import {
   buildASTSchema,
   buildClientSchema,
@@ -7,6 +7,7 @@ import {
   parse,
   printSchema,
 } from 'graphql';
+import { GraphQLClient, gql } from 'graphql-request';
 
 export const fetchGraphQLSchema = async () => {
   try {
@@ -26,19 +27,22 @@ export const fetchGraphQLSchema = async () => {
   }
 };
 
-export const queryFetch = async (query: string, variables?: QueryVariablesType) => {
+export const fetchGraphQLQuery = async (queryStr: string, variables?: string) => {
   try {
-    const response = await fetch(BASE_URL, {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({
-        query: query,
-        variables: variables,
-      }),
+    const graphQLClient = new GraphQLClient(BASE_URL, {
+      credentials: 'include',
+      mode: 'cors',
     });
-    const data = await response.json();
+
+    const query = gql`
+      ${queryStr}
+    `;
+
+    const vars = variables ? JSON.parse(variables) : {};
+
+    const data = await graphQLClient.request(query, vars);
     return data;
-  } catch (error) {
-    console.error(`queryFetch => ${error}`);
+  } catch (e) {
+    return e;
   }
 };
