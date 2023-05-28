@@ -104,5 +104,16 @@
     "executeQuery": "Execute query",
     "clearQueryArea": "Clear query area",
     "copyQuery": "Copy query"
+  },
+  "explorer": {
+    "root": {
+      "title": "A GraphQL schema provides a root type for each kind of operation",
+      "types": "Root Types",
+      "type": {
+        "query": "Query",
+        "mutation": "Mutation",
+        "subscription": "Subscription"
+      }
+    }
   }
 }
