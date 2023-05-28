@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useClipboard } from 'use-clipboard-copy';
 import { CaretRightOutlined, DeleteOutlined, CopyOutlined } from '@ant-design/icons';
-import { Col, Space, Button, Row, Grid } from 'antd';
+import { Col, Space, Button, Row, Grid, notification } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 import AceEditor from 'react-ace';
@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from '@/store/store';
 import { setResponse } from '@/store/reducers/editor/editor.reducer';
 import Variables from '../Variables/Variables';
 import { fetchGraphQLQuery } from '@/api/api';
+import { ClientError } from 'graphql-request';
 
 const { useBreakpoint } = Grid;
 
@@ -36,7 +37,22 @@ const EditorIDE = () => {
 
   const runEditor = async (value: string, variables: string) => {
     const response = await fetchGraphQLQuery(value, variables);
-    dispatch(setResponse(JSON.stringify(response, null, 2)));
+    if (response instanceof SyntaxError) {
+      const errorText = `Variables are invalid JSON: ${response.message}`;
+      dispatch(setResponse(JSON.stringify(errorText)));
+    } else if (response instanceof ClientError) {
+      const { errors, status } = response.response;
+      notification.error({
+        message: t('playground.errors.type.response'),
+        description: t(`playground.errors.status`) + ` : ${status}`,
+        placement: 'bottomRight',
+        duration: 2,
+      });
+      const error = { errors };
+      dispatch(setResponse(JSON.stringify(error, null, 2)));
+    } else {
+      dispatch(setResponse(JSON.stringify(response, null, 2)));
+    }
   };
 
   return (

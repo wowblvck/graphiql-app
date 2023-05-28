@@ -104,7 +104,13 @@
     "variables": "Переменные",
     "executeQuery": "Выполнить запрос",
     "clearQueryArea": "Очистить область запроса",
-    "copyQuery": "Копировать запрос"
+    "copyQuery": "Копировать запрос",
+    "errors": {
+      "type":{
+        "response": "Ошибка GraphQL запроса"
+      },
+      "status": "Статус"
+    }
   },
   "explorer": {
     "root": {
