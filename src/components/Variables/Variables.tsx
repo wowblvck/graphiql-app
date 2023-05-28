@@ -39,10 +39,10 @@ const Variables = () => {
         header={t('playground.variables')}
         key="1"
         style={{
-          marginBottom: 24,
           background: token.colorFillAlter,
           borderRadius: token.borderRadiusLG,
           border: 'none',
+          alignItems: 'center',
         }}
       >
         <AceEditor
