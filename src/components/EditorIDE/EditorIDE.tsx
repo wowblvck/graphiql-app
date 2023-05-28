@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/theme-github';
 import 'ace-builds/src-noconflict/mode-javascript';
-// import 'ace-builds/src-noconflict/mode-graphqlschema';
 import 'ace-builds/src-noconflict/ext-language_tools';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { setResponse } from '@/store/reducers/editor/editor.reducer';
@@ -18,28 +17,27 @@ const { useBreakpoint } = Grid;
 
 const EditorIDE = () => {
   const { t } = useTranslation();
-  const { xs } = useBreakpoint();
+  const { xs, lg } = useBreakpoint();
   const clipboard = useClipboard();
 
   const [editorValue, setEditorValue] = useState('');
   const { isVariablesOpen, variablesValue } = useAppSelector((state) => state.editor);
   const dispatch = useAppDispatch();
 
+  const calculateRowHeight = (isVarsOpen: string[]) => {
+    let height: string;
+    if (lg) {
+      height = isVarsOpen.length ? '70%' : '94%';
+    } else {
+      height = isVarsOpen.length ? '55%' : '88%';
+    }
+    return height;
+  };
+
   const runEditor = async (value: string, variables: string) => {
     const response = await fetchGraphQLQuery(value, variables);
     dispatch(setResponse(JSON.stringify(response, null, 2)));
   };
-  // const [addGraphQLQuery] = useAddGraphQLQueryMutation();
-  // const runEditor = async (value: string, variables: string) => {
-  //   console.log(variables);
-  //   try {
-  //     const vars = variables ? JSON.parse(variables) : {};
-  //     const response = await addGraphQLQuery({ query: value, variables: vars });
-  //     dispatch(setResponse(JSON.stringify(response, null, 2)));
-  //   } catch (error) {
-  //     console.log(`RUN EDITOR ERROR => ${error}`);
-  //   }
-  // };
 
   return (
     <div
@@ -50,7 +48,7 @@ const EditorIDE = () => {
         overflow: 'hidden',
       }}
     >
-      <Row style={{ height: isVariablesOpen.includes('1') ? '70%' : '91%' }}>
+      <Row style={{ height: calculateRowHeight(isVariablesOpen) }}>
         <Col span={xs ? 21 : 22}>
           <AceEditor
             name="query area"
@@ -99,7 +97,7 @@ const EditorIDE = () => {
           </Space>
         </Col>
       </Row>
-      <Row style={{ height: isVariablesOpen.includes('1') ? '30%' : '9%' }}>
+      <Row>
         <Col span={24} style={{ borderTop: 'solid 1px #d3d3d3' }}>
           <Variables />
         </Col>

@@ -1,5 +1,4 @@
 import { BASE_URL } from '@/constants/settings.config';
-// import { VariablesType } from '@/types/api.types';
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { graphqlRequestBaseQuery } from '@rtk-query/graphql-request-base-query';
 import {
@@ -25,15 +24,6 @@ export const graphqlApi = createApi({
         return schema;
       },
     }),
-    //! VariableTypes or unknown on variables
-    // addGraphQLQuery: builder.mutation<string, { query: string; variables?: unknown }>({
-    //   query: ({ query, variables }) => ({
-    //     document: gql`
-    //       ${query}
-    //     `,
-    //     variables: variables,
-    //   }),
-    // }),
   }),
 });
 

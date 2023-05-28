@@ -52,13 +52,13 @@ const PlaygroundPage = () => {
     >
       <SideMenu items={sideMenuItems} handleClick={getElementByClick} />
       <Content style={{ backgroundColor: 'white' }}>
-        <Row style={{ height: '100%' }}>
+        <Row style={{ height: lg ? '100%' : 'auto' }}>
           {isOpen && (
             <Col
               span={24}
               lg={6}
               style={{
-                height: lg ? '100%' : '250px',
+                height: lg ? '100%' : '300px',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -70,10 +70,18 @@ const PlaygroundPage = () => {
               </Suspense>
             </Col>
           )}
-          <Col span={24} lg={isOpen ? 9 : 12} style={{ padding: '10px' }}>
+          <Col
+            span={24}
+            lg={isOpen ? 9 : 12}
+            style={{ padding: '10px', height: lg ? '100%' : '400px' }}
+          >
             <EditorIDE />
           </Col>
-          <Col span={24} lg={isOpen ? 9 : 12} style={{ padding: '10px' }}>
+          <Col
+            span={24}
+            lg={isOpen ? 9 : 12}
+            style={{ padding: '10px', height: lg ? '100%' : '400px' }}
+          >
             <ResponseIDE />
           </Col>
         </Row>
