@@ -6,25 +6,17 @@ const ExplorerNav = lazy(() => import('@components/Explorer/ExplorerNav/Explorer
 const ExplorerContent = lazy(() => import('@components/Explorer/ExplorerContent/ExplorerContent'));
 
 const Explorer = () => {
-  const { data: schema } = useGetGraphQLSchemaQuery();
+  const { isLoading } = useGetGraphQLSchemaQuery();
+
+  if (isLoading) return <Spin size="large" />;
 
   return (
-    <>
-      {schema && (
-        <Space direction="vertical" style={{ width: '100%', padding: '5px', alignSelf: 'start' }}>
-          <ExplorerNav />
-          <Suspense
-            fallback={
-              <Space style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-                <Spin />
-              </Space>
-            }
-          >
-            <ExplorerContent />
-          </Suspense>
-        </Space>
-      )}
-    </>
+    <Suspense fallback={<Spin size="large" />}>
+      <Space direction="vertical" style={{ width: '100%', padding: '5px', alignSelf: 'start' }}>
+        <ExplorerNav />
+        <ExplorerContent />
+      </Space>
+    </Suspense>
   );
 };
 
