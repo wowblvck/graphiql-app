@@ -103,7 +103,13 @@
     "variables": "Variables",
     "executeQuery": "Execute query",
     "clearQueryArea": "Clear query area",
-    "copyQuery": "Copy query"
+    "copyQuery": "Copy query",
+    "errors": {
+      "type":{
+        "response": "Error of GraphQL request"
+      },
+      "status": "Status"
+    }
   },
   "explorer": {
     "root": {
