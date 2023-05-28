@@ -1,7 +1,10 @@
-import { useState, Suspense, lazy } from 'react';
+import { useState, Suspense, lazy, useContext, useEffect } from 'react';
 import { SideMenuItemsType } from '@/types/side-menu.types';
 import { Layout, Row, Col, Grid, Spin } from 'antd';
 import { BookOutlined } from '@ant-design/icons';
+import { HeightContext } from '@/contexts/HeightProvider';
+import { useAppDispatch } from '@/store/store';
+import { clearExplorer } from '@/store/reducers/explorer/explorer.reducer';
 import ResponseIDE from '@/components/ResponseIDE/ResponseIDE';
 import EditorIDE from '@/components/EditorIDE/EditorIDE';
 import SideMenu from '@/components/SideMenu/SideMenu';
@@ -21,10 +24,18 @@ const menuItems: SideMenuItemsType[] = [
 ];
 
 const PlaygroundPage = () => {
+  const { headerHeight, footerHeight } = useContext(HeightContext);
   const { lg } = useBreakpoint();
   const [element, setElement] = useState('');
   const [sideMenuItems, setSideMenuItems] = useState([...menuItems]);
   const isOpen = sideMenuItems.find((item) => item.name === element)?.isOpen;
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearExplorer());
+    };
+  }, [dispatch]);
 
   const getElementByClick = (key: string) => {
     setElement(key);
@@ -36,9 +47,11 @@ const PlaygroundPage = () => {
   };
 
   return (
-    <Layout>
+    <Layout
+      style={{ height: lg ? `calc(100vh - (${headerHeight}px + ${footerHeight}px))` : '100%' }}
+    >
       <SideMenu items={sideMenuItems} handleClick={getElementByClick} />
-      <Content>
+      <Content style={{ backgroundColor: 'white' }}>
         <Row style={{ height: '100%' }}>
           {isOpen && (
             <Col
@@ -49,6 +62,7 @@ const PlaygroundPage = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
+                overflow: 'auto',
               }}
             >
               <Suspense fallback={<Spin size="large" />}>

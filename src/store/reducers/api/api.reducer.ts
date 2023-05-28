@@ -5,11 +5,8 @@ import { graphqlRequestBaseQuery } from '@rtk-query/graphql-request-base-query';
 import {
   GraphQLSchema,
   IntrospectionQuery,
-  buildASTSchema,
   buildClientSchema,
   getIntrospectionQuery,
-  parse,
-  printSchema,
 } from 'graphql';
 import { gql } from 'graphql-request';
 
@@ -25,7 +22,7 @@ export const graphqlApi = createApi({
       }),
       transformResponse: (response: IntrospectionQuery) => {
         const schema = buildClientSchema(response);
-        return buildASTSchema(parse(printSchema(schema)));
+        return schema;
       },
     }),
     //! VariableTypes or unknown on variables

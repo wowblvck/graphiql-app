@@ -4,7 +4,7 @@ import { LeftOutlined } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { removeRoute } from '@/store/reducers/explorer/explorer.reducer';
 
-const { Text, Title } = Typography;
+const { Title, Link } = Typography;
 
 const ExplorerNav: FC = () => {
   const { routes } = useAppSelector((state) => state.explorer);
@@ -18,18 +18,18 @@ const ExplorerNav: FC = () => {
     <>
       {!routes.history.length ? (
         <Title level={3} style={{ margin: 0, textTransform: 'capitalize' }}>
-          {routes.route}
+          {routes.name}
         </Title>
       ) : (
         <Space direction="vertical">
           <Space onClick={handleBack} style={{ cursor: 'pointer' }}>
             <LeftOutlined />
-            <Text style={{ fontSize: '16px', textTransform: 'capitalize' }}>
-              {routes.history[routes.history.length - 1]}
-            </Text>
+            <Link style={{ fontSize: '16px' }}>
+              {routes.history[routes.history.length - 1].name}
+            </Link>
           </Space>
-          <Title level={3} style={{ margin: 0, textTransform: 'capitalize' }}>
-            {routes.route}
+          <Title level={3} style={{ margin: 0 }}>
+            {routes.name}
           </Title>
         </Space>
       )}

@@ -15,3 +15,10 @@
   opacity: 0;
   transition: opacity 300ms;
 }
+
+.root-layout {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100%;
+}
