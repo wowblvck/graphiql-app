@@ -39,7 +39,6 @@ export const fetchGraphQLQuery = async (queryStr: string, variables?: string) =>
     `;
 
     const vars = variables ? JSON.parse(variables) : {};
-
     const data = await graphQLClient.request(query, vars);
     return data;
   } catch (e) {

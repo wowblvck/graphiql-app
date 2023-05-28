@@ -1,6 +1,7 @@
-import { ReactElement, lazy } from 'react';
+import { ReactElement, Suspense, lazy } from 'react';
 import { useAppSelector } from '@/store/store';
 import { ExplorerRoute } from '@/types/explorer-nav.types';
+import { Spin } from 'antd';
 
 const RootTypes = lazy(() => import('@components/Explorer/RootTypes/RootTypes'));
 const Fields = lazy(() => import('@components/Explorer/Fields/Fields'));
@@ -49,7 +50,15 @@ const explorerItems: ExplorerItems[] = [
 const ExplorerContent = () => {
   const { route } = useAppSelector((state) => state.explorer.routes);
 
-  return <>{explorerItems.find((element) => element.name === route)?.component}</>;
+  return (
+    <Suspense
+      fallback={
+        <Spin style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} />
+      }
+    >
+      {explorerItems.find((element) => element.name === route)?.component}
+    </Suspense>
+  );
 };
 
 export default ExplorerContent;

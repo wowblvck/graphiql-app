@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Space, Typography } from 'antd';
+import { Space, Spin, Typography } from 'antd';
 import { Trans, useTranslation } from 'react-i18next';
 import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import Login from './Login/Login';
@@ -17,12 +17,14 @@ enum FormStates {
 
 const Auth = () => {
   const [formState, setFormState] = useState<FormStates>(FormStates.Login);
-  const { isAuth } = useAuth();
+  const { isAuth, isLoading } = useAuth();
   const { t } = useTranslation();
 
   const changeFormState = () => {
     setFormState(formState === FormStates.Login ? FormStates.Register : FormStates.Login);
   };
+
+  if (isLoading) return <Spin size="large" />;
 
   return (
     <>

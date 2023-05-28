@@ -1,17 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
-import WelcomePage from '@/pages/WelcomePage/WelcomePage';
 import Router from './router.types';
 import { HomeOutlined } from '@ant-design/icons';
-import AuthPage from '@/pages/AuthPage/AuthPage';
-import PlaygroundPage from '@/pages/PlaygroundPage/PlaygroundPage';
 import Page404 from '@/pages/Page404/Page404 ';
-import { Suspense, lazy } from 'react';
-import { Content } from 'antd/es/layout/layout';
-import { Spin } from 'antd';
-
-const RequireAuth = lazy(() => import('@components/Auth/RequireAuth/RequireAuth'));
+import { lazy } from 'react';
 
 const Root = lazy(() => import('@/layouts/Root'));
+const WelcomePage = lazy(() => import('@/pages/WelcomePage/WelcomePage'));
+const AuthPage = lazy(() => import('@/pages/AuthPage/AuthPage'));
+const RequireAuth = lazy(() => import('@components/Auth/RequireAuth/RequireAuth'));
+const PlaygroundPage = lazy(() => import('@/pages/PlaygroundPage/PlaygroundPage'));
 
 export enum Routes {
   Home = '/',
@@ -35,17 +32,9 @@ const router = createBrowserRouter([
       {
         path: Routes.Playground,
         element: (
-          <Suspense
-            fallback={
-              <Content style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Spin size="large" />
-              </Content>
-            }
-          >
-            <RequireAuth>
-              <PlaygroundPage />
-            </RequireAuth>
-          </Suspense>
+          <RequireAuth>
+            <PlaygroundPage />
+          </RequireAuth>
         ),
       },
       {

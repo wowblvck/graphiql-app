@@ -29,17 +29,6 @@ const EditorIDE = () => {
     const response = await fetchGraphQLQuery(value, variables);
     dispatch(setResponse(JSON.stringify(response, null, 2)));
   };
-  // const [addGraphQLQuery] = useAddGraphQLQueryMutation();
-  // const runEditor = async (value: string, variables: string) => {
-  //   console.log(variables);
-  //   try {
-  //     const vars = variables ? JSON.parse(variables) : {};
-  //     const response = await addGraphQLQuery({ query: value, variables: vars });
-  //     dispatch(setResponse(JSON.stringify(response, null, 2)));
-  //   } catch (error) {
-  //     console.log(`RUN EDITOR ERROR => ${error}`);
-  //   }
-  // };
 
   return (
     <div

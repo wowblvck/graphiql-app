@@ -16,7 +16,7 @@ const AuthButton = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { md } = useBreakpoint();
-  const { isAuth } = useAuth();
+  const { isAuth, isLoading } = useAuth();
 
   const showConfirm = () => {
     confirm({
@@ -52,9 +52,11 @@ const AuthButton = () => {
       style={{ marginLeft: '30px' }}
       icon={!isAuth ? <LoginOutlined /> : <LogoutOutlined />}
       type="primary"
+      loading={isLoading}
       onClick={() => (!isAuth ? navigate(Routes.Auth) : showConfirm())}
     >
-      {md ? (!isAuth ? t('auth.login_btn') : t('auth.logout_btn')) : ''}
+      {md &&
+        (isLoading ? t('auth.loading_btn') : !isAuth ? t('auth.login_btn') : t('auth.logout_btn'))}
     </Button>
   );
 };
