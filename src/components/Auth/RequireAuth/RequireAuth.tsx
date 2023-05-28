@@ -1,14 +1,21 @@
 import { useAuth } from '@/hooks/useAuth';
 import { Routes } from '@/routes/router';
-import { Button, Result } from 'antd';
+import { Button, Result, Spin } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 const RequireAuth = ({ children }: { children: JSX.Element }) => {
-  const { isAuth } = useAuth();
+  const { isAuth, isLoading } = useAuth();
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  if (isLoading)
+    return (
+      <Content style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Spin size="large"></Spin>
+      </Content>
+    );
 
   if (!isAuth) {
     return (
@@ -28,7 +35,7 @@ const RequireAuth = ({ children }: { children: JSX.Element }) => {
     );
   }
 
-  return children;
+  return isAuth && children;
 };
 
 export default RequireAuth;
